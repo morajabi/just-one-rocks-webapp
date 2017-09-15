@@ -43,13 +43,13 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-          {/* <link rel="icon" type="image/png" href="/static/favicon.png" /> */}
+          <link rel="icon" type="image/png" href="/static/favicon.png" />
           <link rel="manifest" href="/static/manifest.json" />
 
           <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 
-          <meta name="theme-color" content="#da936a" />
+          <meta name="theme-color" content="#FEA600" />
           <meta name="author" content="morajabi" />
 
           <style dangerouslySetInnerHTML={{ __html: resetStyles }} />
