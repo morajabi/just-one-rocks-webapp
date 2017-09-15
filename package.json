@@ -1,4 +1,12 @@
 {
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "lint:js": "eslint",
+    "lint:fix": "eslint . --fix",
+    "lint:css": "stylelint './static/**/*.js' './pages/**/*.js' './utils/**/*.js' './components/**/*.js'"
+  },
   "dependencies": {
     "eslint": "^4.6.1",
     "next": "^3.2.2",
@@ -15,6 +23,18 @@
     "eslint-plugin-prettier": "^2.2.0",
     "eslint-plugin-react": "^7.3.0",
     "husky": "^0.14.3",
-    "lint-staged": "^4.2.1"
+    "lint-staged": "^4.2.1",
+    "stylelint": "^8.1.1",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^0.4.0",
+    "stylint-stylish": "^1.4.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "stylelint",
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
