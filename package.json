@@ -13,7 +13,8 @@
     "next": "^3.2.2",
     "prettier": "^1.7.0",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "styled-components": "^2.1.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.0",
