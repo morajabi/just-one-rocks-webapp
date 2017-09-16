@@ -14,9 +14,10 @@ const ShareThisCountainer = styled.div`
 const ShareThisTitle = styled.h2`
   font-size: 34px;
   font-style: bold;
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 24px;
+  margin-bottom: 0;
   display: block;
   color: #555;
 `
@@ -36,8 +37,22 @@ const ShareTitle = styled.span`
   letter-spacing: 0.72px;
   color: #a9a9a9;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 24px;
   text-transform: uppercase;
+`
+const SocialContainer = styled.div`
+  width: 80px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+const Dot = styled.div`
+  width: 6px;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.11);
+  font-size: 30px;
+  border-radius: 50%;
 `
 
 export default class ShareThis extends Component {
@@ -47,10 +62,11 @@ export default class ShareThis extends Component {
         <ShareThisTitle>Share this</ShareThisTitle>
         <Subtitle>and get unlimited credits!</Subtitle>
         <ShareTitle>Tell your frends via</ShareTitle>
-        <div>
+        <SocialContainer>
           <Twitter />
+          <Dot />
           <Facebook />
-        </div>
+        </SocialContainer>
       </ShareThisCountainer>
     )
   }
