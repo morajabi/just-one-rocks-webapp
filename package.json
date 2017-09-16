@@ -3,12 +3,12 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
     "lint:js": "eslint .",
     "lint:fix": "eslint . --fix",
     "lint:css": "stylelint './static/**/*.js' './pages/**/*.js' './utils/**/*.js' './components/**/*.js'",
-    "precommit": "lint-staged",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "eslint": "^4.6.1",
