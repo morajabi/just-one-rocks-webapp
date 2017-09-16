@@ -16,7 +16,7 @@ const ShareThisTitle = styled.h2`
   font-style: bold;
   font-weight: 700;
   text-align: center;
-  margin-top: 24px;
+  margin-top: 20px;
   margin-bottom: 0;
   display: block;
   color: #555;
