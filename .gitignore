@@ -5,6 +5,8 @@ node_modules
 dist/
 npm-debug.log
 
+.next/
+
 # Mac
 .DS_Store
-.*/
+
