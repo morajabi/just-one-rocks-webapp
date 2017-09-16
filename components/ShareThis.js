@@ -4,8 +4,6 @@ import styled from 'styled-components'
 import { Twitter, Facebook } from './Icons'
 
 const ShareThisCountainer = styled.div`
-  width: 262px;
-  height: 169px;
   background: rgba(0, 0, 0, 0.02);
   font-family: 'Cabin';
   font-style: normal;
@@ -46,6 +44,7 @@ const SocialContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 15px;
 `
 const Dot = styled.div`
   width: 6px;
