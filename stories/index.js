@@ -18,5 +18,5 @@ storiesOf('Button', module)
 storiesOf('ShareThis', module)
   .add('Full', () => <div style={{ width: 262 }}><ShareThis /></div>)
 
-storiesOf('KrmaBox', module)
+storiesOf('KarmaBox', module)
   .add('whole box', () => <div style={{ width: 262 }}><KarmaBox /></div>)
