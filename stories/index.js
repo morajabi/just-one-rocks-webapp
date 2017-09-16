@@ -15,4 +15,4 @@ storiesOf('Button', module)
   .add('with some emoji', () => <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>)
 
 storiesOf('ShareThis', module)
-  .add('Full', () => <ShareThis />)
+  .add('Full', () => <div style={{ width: 262 }}><ShareThis /></div>)
