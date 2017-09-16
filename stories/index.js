@@ -7,6 +7,7 @@ import { linkTo } from '@storybook/addon-links'
 import { Button, Welcome } from '@storybook/react/demo'
 
 import ShareThis from '../components/ShareThis'
+import KarmaBox from '../components/KarmaBox'
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />)
 
@@ -16,3 +17,6 @@ storiesOf('Button', module)
 
 storiesOf('ShareThis', module)
   .add('Full', () => <div style={{ width: 262 }}><ShareThis /></div>)
+
+storiesOf('KrmaBox', module)
+  .add('whole box', () => <div style={{ width: 262 }}><KarmaBox /></div>)
