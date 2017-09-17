@@ -48,7 +48,6 @@ const Help = styled.p`
   margin: ${rem(9)} 0 ${rem(3)};
 `
 const ShareWork = styled.a`
-  font-family: Avenir Next;
   font-size: ${rem(11)};
   text-decoration-line: underline;
   color: #76a9ea;
