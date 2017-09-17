@@ -40,12 +40,11 @@ const KarmasText = styled.span`
   font-weight: 700;
   display: block;
   padding-left: ${rem(3)};
-  padding-top: ${rem(2)};
+  line-height: 1.91;
 `
 const Help = styled.p`
   font-size: ${rem(18)};
   color: #555;
-  white-space: wrap;
   margin: ${rem(9)} 0 ${rem(3)};
 `
 const ShareWork = styled.a`
