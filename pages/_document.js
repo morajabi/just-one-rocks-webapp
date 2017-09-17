@@ -21,6 +21,29 @@ const resetStyles = `
       font-size: 16px;
     }
   }
+  @font-face {
+    font-family: 'Avenir Next';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Avenir Next'), local('Avenir-Next-Thin'), url(/static/fonts/avenir-next-thin.woff) format('woff');
+    unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
+  }
+ 
+  @font-face {
+    font-family: 'Avenir Next';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Avenir Next'), local('Avenir-Next-Regular'), url(/static/fonts/avenir-next-regular.woff) format('woff');
+    unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
+  }
+ 
+  @font-face {
+    font-family: 'Avenir Next';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Avenir Next'), local('Avenir-Next-Bold'), url(/static/fonts/avenir-next-bold.woff) format('woff');
+    unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
+  }
 `
 
 

@@ -5,7 +5,7 @@ import { Twitter, Facebook } from './Icons'
 
 const ShareThisCountainer = styled.div`
   background: rgba(0, 0, 0, 0.02);
-  font-family: 'Cabin';
+  font-family: 'Avenir Next';
   font-style: normal;
   overflow: hidden;
 `
