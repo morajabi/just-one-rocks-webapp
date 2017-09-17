@@ -15,23 +15,38 @@ const Title = styled.h2`
   margin: 0;
 `
 const SubTitle = styled.p`
-  margin: 0;
+  margin: ${rem(12)} 0 0;
   font-size: ${rem(16)};
   color: #555;
   font-weight: 400;
 `
 const RuleList = styled.ul`
   margin: ${rem(20)} 0 0;
+  padding: 0;
   font-size: ${rem(16)};
   color: #555;
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1.44;
 `
 const Item = styled.li`
+  position: relative;
+  padding-left: ${rem(24)};
   margin: 0;
-  margin-bottom: ${rem(26)};
+  margin-bottom: ${rem(20)};
   font-size: ${rem(16)};
   color: #555;
+
+  &:before {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    top: ${rem(7)};
+    width: ${rem(8)};
+    height: ${rem(8)};
+    background: rgba(0, 0, 0, 0.15);
+    font-size: 30px;
+    border-radius: 50%;
+  }
 `
 
 const Rules = () => (
