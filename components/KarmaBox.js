@@ -7,35 +7,49 @@ const Container = styled.div`
   font-family: 'Avenir Next';
   background: rgba(0, 0, 0, 0.02);
   overflow: hidden;
+  padding-bottom: ${rem(10)};
 `
 const Title = styled.span`
   font-weight: 700;
   font-size: 30px;
 `
-
 const ScoreContaner = styled.div`
   display: flex;
 `
-
 const Score = styled.div`
   flex: 0 1 auto;
   font-size: ${rem(34)};
-  border: 1px solid #999;
+  text-align: center;
 `
-
 const Share = styled.div`
-  flex: 1 0 auto;
-  margin-left: ${rem(5)};
+  flex: 0 1 100%;
+  margin-left: ${rem(10)};
+  overflow: hidden;
 `
 const Karmas = styled.span`
-  font-size: 45px;
+  font-size: ${rem(45)};
   letter-spacing: 1.8px;
   color: #19abf9;
+  display: block;
+  font-weight: 700;
 `
 const KarmasText = styled.span`
-  font-size: 15px;
+  font-size: ${rem(15)};
   color: #19abf9;
-  font-weight: 400;
+  font-weight: 700;
+  display: block;
+`
+const Help = styled.p`
+  font-size: 15px;
+  color: #555;
+  white-space: wrap;
+  margin-bottom: 0;
+`
+const ShareWork = styled.a`
+  font-family: Avenir Next;
+  font-size: 11px;
+  text-decoration-line: underline;
+  color: #76a9ea;
 `
 
 const KarmaBox = () => (
@@ -44,10 +58,11 @@ const KarmaBox = () => (
     <ScoreContaner>
       <Score>
         <Karmas>18</Karmas>
-        <KarmasText>Karmas</KarmasText>
+        <KarmasText>karmas</KarmasText>
       </Score>
       <Share>
-        SHare
+        <Help>help others and get points!</Help>
+        <ShareWork href="#">share your work</ShareWork>
       </Share>
     </ScoreContaner>
   </Container>
