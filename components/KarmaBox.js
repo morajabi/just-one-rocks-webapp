@@ -4,12 +4,13 @@ import styled from 'styled-components'
 import rem from '../utils/rem'
 
 const Container = styled.div`
+  font-family: 'Avenir Next';
   background: rgba(0, 0, 0, 0.02);
-  font-family: 'Cabin';
   overflow: hidden;
 `
-const Title = styled.h2`
+const Title = styled.span`
   font-weight: 700;
+  font-size: 30px;
 `
 
 const ScoreContaner = styled.div`
@@ -26,13 +27,24 @@ const Share = styled.div`
   flex: 1 0 auto;
   margin-left: ${rem(5)};
 `
+const Karmas = styled.span`
+  font-size: 45px;
+  letter-spacing: 1.8px;
+  color: #19abf9;
+`
+const KarmasText = styled.span`
+  font-size: 15px;
+  color: #19abf9;
+  font-weight: 400;
+`
 
 const KarmaBox = () => (
   <Container>
     <Title>Yes! You have</Title>
     <ScoreContaner>
       <Score>
-        18
+        <Karmas>18</Karmas>
+        <KarmasText>Karmas</KarmasText>
       </Score>
       <Share>
         SHare
