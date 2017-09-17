@@ -15,6 +15,7 @@ const Title = styled.span`
 `
 const ScoreContaner = styled.div`
   display: flex;
+  margin-top: ${rem(10)};
 `
 const Score = styled.div`
   flex: 0 1 auto;
@@ -34,7 +35,7 @@ const Karmas = styled.span`
   font-weight: 700;
 `
 const KarmasText = styled.span`
-  font-size: ${rem(17)};
+  font-size: ${rem(15)};
   color: #19abf9;
   font-weight: 700;
   display: block;
