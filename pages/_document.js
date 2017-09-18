@@ -77,6 +77,7 @@ export default class MyDocument extends Document {
 
           <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700" rel="stylesheet" />
           <link href="https://fonts.googleapis.com/css?family=Assistant:400,600,700,800" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet" />
           <style dangerouslySetInnerHTML={{ __html: resetStyles }} />
 
           {styles}
