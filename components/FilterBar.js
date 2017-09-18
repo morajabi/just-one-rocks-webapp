@@ -2,10 +2,11 @@ import styled, { css } from 'styled-components'
 import darken from 'polished/lib/color/darken'
 
 import rem from '../utils/rem'
+import { headerFont } from '../utils/fonts'
 
 const Container = styled.div`
   background: #fcfcfc;
-  font-family: 'Assistant';
+  font-family: ${headerFont};
   width: 100%;
   display: flex;
   justify-content: space-between;
