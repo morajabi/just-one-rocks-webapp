@@ -9,7 +9,7 @@ const resetStyles = `
 
   html,
   body {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.6;
     font-family: ${bodyFont};
     font-style: normal;
