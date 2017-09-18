@@ -10,8 +10,9 @@ import ShareThis from '../components/ShareThis'
 import KarmaBox from '../components/KarmaBox'
 import Rules from '../components/Rules'
 
-import FilterBar from '../components/FilterBar'
 
+import FilterBar from '../components/FilterBar'
+import Message from '../components/Message'
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />)
 
@@ -26,3 +27,4 @@ storiesOf('SideBar', module)
 
 storiesOf('Message section', module)
   .add('FilterBar', () => <div style={{ width: 571 }}><FilterBar /></div>)
+  .add('Message', () => <div style={{ width: 571 }}><Message /></div>)
