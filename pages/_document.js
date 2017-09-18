@@ -9,7 +9,7 @@ const resetStyles = `
 
   html,
   body {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.6;
     font-family: ${bodyFont};
     font-style: normal;
@@ -76,6 +76,7 @@ export default class MyDocument extends Document {
           <meta name="author" content="morajabi" />
 
           <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css?family=Assistant:400,600,700,800" rel="stylesheet" />
           <style dangerouslySetInnerHTML={{ __html: resetStyles }} />
 
           {styles}
