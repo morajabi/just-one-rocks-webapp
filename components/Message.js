@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import rem from '../utils/rem'
+import { darkGrey, Grey } from '../utils/colors'
 import Dot from './Dot'
 import { ThumbUp1, DislikeThumb, ArrowRight } from './Icons'
 import { messageFont, headerFont } from '../utils/fonts'
@@ -47,20 +48,23 @@ const UserData = styled.p`
 const Name = styled.a`
   font-weight: 700;
   font-size: ${rem(14)};
-  color: #555;
+  color: ${darkGrey};
   margin-right: ${rem(14)};
   text-decoration: none;
 `
 const Username = styled.a`
   font-size: ${rem(14)};
-  color: #bdbdbd;
+  color: ${Grey};
   text-decoration: none;
 `
-const MessageText = styled.p`
+const MessageTextContainer = styled.p`
   font-size: ${rem(14)};
   line-height: ${rem(9)};
-  color: #555;
+  color: ${darkGrey};
   margin-top: ${rem(10)};
+`
+const MessageText = styled.span`
+  color: ${darkGrey};
 `
 const Kind = styled.p`
   font-family: ${headerFont};
@@ -77,7 +81,7 @@ const Feedback = styled.div`
   font-size: ${rem(11)};
   letter-spacing: ${rem(0.44)};
   text-transform: uppercase;
-  color: #bdbdbd;
+  color: ${Grey};
 `
 const Wrong = styled.div`
   padding: ${rem(5)} 0;
@@ -99,6 +103,11 @@ const WrongText = styled.div`
   display: inline;
   margin-right: ${rem(4)};
 `
+const AnswerText = styled.div`
+  padding-top: ${rem(5)};
+  display: inline;
+  margin-right: ${rem(4)};
+`
 
 const Message = () => (
   <Container>
@@ -115,11 +124,13 @@ const Message = () => (
         <Name href="#">Gilfoyle St</Name>
         <Username href="#">@gilflmx</Username>
       </UserData>
+
       <MessageContent>
-        <MessageText>
+        <MessageTextContainer>
           <Kind>CON</Kind>
-          Sublime is fast. I mean a lot faster than Electron-based apps like Visual Studio Code from Microsoft.
-        </MessageText>
+          <MessageText>Sublime is fast. I mean a lot faster than Electron-based apps like Visual Studio Code from Microsoft.</MessageText>
+        </MessageTextContainer>
+
         <Feedback>
           <Wrong>
             <WrongIcon>
@@ -130,9 +141,10 @@ const Message = () => (
           <Dot />
           <Answer>
             <ArrowRight />
-            answer (3)
+            <AnswerText>answer (3)</AnswerText>
           </Answer>
         </Feedback>
+        
       </MessageContent>
     </MessageContent>
   </Container>
