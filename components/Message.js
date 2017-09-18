@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
-import { ThumbUp1 } from './Icons'
 import rem from '../utils/rem'
+import Dot from './Dot'
+import { ThumbUp1, DislikeThumb, ArrowRight } from './Icons'
 import { messageFont, headerFont } from '../utils/fonts'
 
 const Container = styled.div`
@@ -12,10 +13,10 @@ const Container = styled.div`
 const UserInfo = styled.div`
   flex: 0 1 auto;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  padding: ${rem(6)} ${rem(10)};
 `
 const MessageContent = styled.div`
   flex: 0 1 100%;
@@ -31,13 +32,72 @@ const UserAvatar = styled.div`
 const Like = styled.div`
   width: ${rem(22)};
   height: ${rem(24)};
-  margin-top: ${rem(15)};
+  margin-top: ${rem(10)};
 `
 const LikeCount = styled.div`
   font-size: ${rem(20)};
   letter-spacing: ${rem(0.78)};
   text-transform: uppercase;
   color: #bebebe;
+`
+const UserData = styled.p`
+  margin: 0;
+  padding: 0;
+`
+const Name = styled.a`
+  font-weight: 700;
+  font-size: ${rem(14)};
+  color: #555;
+  margin-right: ${rem(14)};
+  text-decoration: none;
+`
+const Username = styled.a`
+  font-size: ${rem(14)};
+  color: #bdbdbd;
+  text-decoration: none;
+`
+const MessageText = styled.p`
+  font-size: ${rem(14)};
+  line-height: ${rem(9)};
+  color: #555;
+  margin-top: ${rem(10)};
+`
+const Kind = styled.p`
+  font-family: ${headerFont};
+  font-size: ${rem(13)};
+  letter-spacing: -0.26px;
+  color: #ff9b2f;
+  display: inline-block;
+  font-weight: 700;
+  margin-right: ${rem(5)};
+`
+const Feedback = styled.div`
+  font-weight: bold;
+  margin-top: ${rem(20)};
+  font-size: ${rem(11)};
+  letter-spacing: ${rem(0.44)};
+  text-transform: uppercase;
+  color: #bdbdbd;
+`
+const Wrong = styled.div`
+  padding: ${rem(5)} 0;
+  display: inline;
+  margin-right: ${rem(11)};
+`
+const Answer = styled.div`
+  padding: ${rem(5)} 0;
+  display: inline;
+  margin-left: 10px;
+`
+const WrongIcon = styled.div`
+  padding-top: ${rem(5)};
+  display: inline;
+  margin-right: 4px;
+`
+const WrongText = styled.div`
+  padding-top: ${rem(5)};
+  display: inline;
+  margin-right: ${rem(4)};
 `
 
 const Message = () => (
@@ -49,8 +109,31 @@ const Message = () => (
         <LikeCount>78</LikeCount>
       </Like>
     </UserInfo>
+    
     <MessageContent>
-      <MessageContent>Message Content</MessageContent>
+      <UserData>
+        <Name href="#">Gilfoyle St</Name>
+        <Username href="#">@gilflmx</Username>
+      </UserData>
+      <MessageContent>
+        <MessageText>
+          <Kind>CON</Kind>
+          Sublime is fast. I mean a lot faster than Electron-based apps like Visual Studio Code from Microsoft.
+        </MessageText>
+        <Feedback>
+          <Wrong>
+            <WrongIcon>
+              <DislikeThumb />
+            </WrongIcon>
+            <WrongText>Wrong (-25)</WrongText>
+          </Wrong>
+          <Dot />
+          <Answer>
+            <ArrowRight />
+            answer (3)
+          </Answer>
+        </Feedback>
+      </MessageContent>
     </MessageContent>
   </Container>
 )
