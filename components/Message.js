@@ -59,14 +59,15 @@ const Username = styled.a`
 `
 const MessageTextContainer = styled.p`
   font-size: ${rem(14)};
-  line-height: ${rem(9)};
+  line-height: ${rem(20)};
   color: ${darkGrey};
-  margin-top: ${rem(10)};
+  margin-top: ${rem(3)} 0;
 `
 const MessageText = styled.span`
   color: ${darkGrey};
 `
 const Kind = styled.p`
+  margin: 0;
   font-family: ${headerFont};
   font-size: ${rem(13)};
   letter-spacing: -0.26px;
