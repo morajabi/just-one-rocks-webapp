@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import darken from 'polished/lib/color/darken'
 
 import rem from '../utils/rem'
 
@@ -21,8 +22,6 @@ const Text = styled.p`
   display: inline-block;
 `
 const FilterTag = styled.span`
-  background: ${props => props.primary ? '#61c8ff' : 'rgba(233, 233, 233, 0.37)'};
-  color: ${props => props.primary ? '#fff' : '#555'};
   font-weight: 600;
   font-size: ${rem(14)};
   text-align: center;
@@ -30,6 +29,24 @@ const FilterTag = styled.span`
   padding: ${rem(3)} ${rem(14)};
   margin-left: ${rem(10)};
   line-height: 1;
+  cursor: pointer;
+  ${p => p.primary ? css`
+    background: #61c8ff;
+    color: white;
+
+    &:hover,
+    &:focus {
+      background: ${darken(0.2, '#61c8ff')};
+    }
+  ` : css`
+    background: rgba(233, 233, 233, 0.37);
+    color: #555;
+
+    &:hover,
+    &:focus {
+      background: rgba(233, 233, 233, 0.7);
+    }
+  `}
 `
 
 const FilterBar = () => (
