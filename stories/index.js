@@ -51,6 +51,7 @@ storiesOf('Message', module)
         userNicName="Gilfoyle St"
         type="con"
         content="Sublime is fast. I mean a lot faster than Electron-based apps like Visual Studio Code from Microsoft."
+        goBackEvent={action('goBack')}
       />
     </div>
   )
