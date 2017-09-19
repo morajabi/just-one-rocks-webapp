@@ -67,7 +67,7 @@ storiesOf('ReplyBubble', module)
           bubbleStyle="primary"
           userColor="#0f0"
           content="Hi!"
-          upVoteCount="12"
+          upVoteCount={12}
           onUpVote={ action('Upvote')}
         />
       </div>
@@ -79,7 +79,7 @@ storiesOf('ReplyBubble', module)
           bubbleStyle="primary"
           userColor="#0f0"
           content="Hi h s lkasdjlk asjdkla jskdsaj dlkdkladlklkas asdjaks jkldsaj klasas dashkjdasj dlkajsl kdjasld!"
-          upVoteCount="12"
+          upVoteCount={12}
           onUpVote={ action('clicked') }
         />
       </div>
