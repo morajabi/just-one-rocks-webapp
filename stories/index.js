@@ -25,6 +25,8 @@ storiesOf('SideBar', module)
   .add('KarmaBox', () => <div style={{ width: 232 }}><KarmaBox /></div>)
   .add('Rules', () => <div style={{ width: 242 }}><Rules /></div>)
 
-storiesOf('Message section', module)
+storiesOf('Header', module)
   .add('FilterBar', () => <div style={{ width: 571 }}><FilterBar /></div>)
+  
+storiesOf('Message', module)
   .add('Message', () => <div style={{ width: 571 }}><Message /></div>)
