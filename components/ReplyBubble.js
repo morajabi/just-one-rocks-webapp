@@ -25,15 +25,15 @@ const UserAvatar = styled.div`
   background: #333;
   width: ${rem(32)};
   height: ${rem(32)};
-  border: ${rem(3)} solid ${p => p.userColor ? p.userColor : '#636cd5'};
+  border: ${rem(3)} solid ${p => p.userColor || '#636cd5'};
   border-radius: ${rem(22)};
-  over-flow: hidden;
+  overflow: hidden;
 
   img {
     border-radius: ${rem(22)};
   }
 `
-const colorSwitch = p => p.bubbleStyle == 'primary' ? '#eaeaea' : '#2ea4ff'
+const  ReplyTriangleColorSwitch = p => p.bubbleStyle == 'primary' ? '#eaeaea' : '#2ea4ff'
 
 const ReplayContainer = styled.div`
   flex: 0 1 auto;
@@ -43,7 +43,7 @@ const ReplayContainer = styled.div`
   flex-direction: ${p => p.align == 'end' ? 'row-reverse' : 'row'};
 `
 const Reply = styled.div`
-  background: ${colorSwitch};
+  background: ${ReplyTriangleColorSwitch};
   position: relative;
   width: 100%;
   margin-bottom: ${rem(10)};
@@ -67,22 +67,20 @@ const Reply = styled.div`
     height: 0;
     margin-top: ${rem(-10)};
     border: ${rem(20)} solid transparent;
-    border-right-color: ${colorSwitch};
-
+    border-bottom: 0;
+    
     ${p => p.align == 'end' ? css`
       margin-right: ${rem(-20)};
       right: ${rem(10)};
       margin-right: ${rem(-20)};
-      border-left-color: ${colorSwitch};
+      border-left-color: ${ReplyTriangleColorSwitch};
       border-right: 0;
-      border-bottom: 0;
     ` : css`
       margin-left: ${rem(-20)};
       left: ${rem(10)};
       margin-left: ${rem(-20)};
-      border-right-color: ${colorSwitch};
+      border-right-color: ${ReplyTriangleColorSwitch};
       border-left: 0;
-      border-bottom: 0;
     `}
   }
 `
@@ -150,7 +148,7 @@ ReplyBubble.propTypes = {
   userColor: PropTypes.string,
   content: PropTypes.string,
   upVoteCount: PropTypes.number,
-  onUpVote: PropTypes.fun,
+  onUpVote: PropTypes.func,
 }
 
 export default ReplyBubble
