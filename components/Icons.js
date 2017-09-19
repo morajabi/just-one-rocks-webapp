@@ -22,7 +22,7 @@ export const ArrowRight = () => (
 export const ArrowUp = () => (
   <svg width="8" height="8" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
     <title>Arrow Up</title>
-      <path id="a" d="M8 8H0l3.8-8L8 8z"/>
+      <path id="a" fill="#D6D6D6" d="M8 8H0l3.8-8L8 8z"/>
   </svg>
 )
 
