@@ -4,7 +4,7 @@ import rem from '../utils/rem'
 import { darkGrey, grey } from '../utils/colors'
 import { bodyFont, headerFont } from '../utils/fonts'
 import Dot from './Dot'
-import { ThumbUp1, DislikeThumb, ArrowRight } from './Icons'
+import { ThumbUp1, DislikeThumb, ArrowRight, ArrowLeft } from './Icons'
 
 const Container = styled.div`
   font-family: ${headerFont};
@@ -58,10 +58,10 @@ const Username = styled.a`
   text-decoration: none;
 `
 const MessageTextContainer = styled.p`
-  font-size: ${rem(14)};
+  font-size: ${ p => p.styleType == 'type1' ? rem(14) : rem(13) };
   line-height: ${rem(20)};
   color: ${darkGrey};
-  margin-top: ${rem(3)} 0;
+  margin-top: ${ p => p.styleType == 'type1' ? rem(10) : rem(2) };
 `
 const MessageText = styled.span`
   color: ${darkGrey};
@@ -69,12 +69,13 @@ const MessageText = styled.span`
 const Kind = styled.p`
   margin: 0;
   font-family: ${headerFont};
-  font-size: ${rem(13)};
+  font-size: ${ p => p.styleType == 'type1' ? rem(17) : rem(16) };
   letter-spacing: -0.26px;
   color: #ff9b2f;
   display: inline-block;
   font-weight: 700;
   margin-right: ${rem(5)};
+  text-transform: uppercase;
 `
 const Feedback = styled.div`
   font-weight: bold;
@@ -109,46 +110,89 @@ const AnswerText = styled.div`
   display: inline;
   margin-right: ${rem(4)};
 `
+const GoBack = styled.div`
+  font-weight: bold;
+  font-size: ${rem(11)};
+  letter-spacing: ${rem(0.55)};
+  color: #d4d4d4;
+  cursor: pointer;
+`
+const GoBackArrow = styled.div`
+  display: inline;
+`
+const GoBackText = styled.span`
+  margin-left: ${rem(5)};
+`
 
-const Message = () => (
-  <Container>
-    <UserInfo>
-      <UserAvatar></UserAvatar>
-      <Like>
-        <ThumbUp1 />
-        <LikeCount>78</LikeCount>
-      </Like>
-    </UserInfo>
-    
-    <MessageContent>
-      <UserData>
-        <Name href="#">Gilfoyle St</Name>
-        <Username href="#">@gilflmx</Username>
-      </UserData>
+const Message = (props) => {
+  const {
+    styleType = 'type1',
+    userImage,
+    userNicName,
+    username,
+    type,
+    content,
+    likeCount = 0,
+    wrongCount = 0,
+    answerCount = 0, 
+  } = props
+
+  return (
+    <Container>
+      <UserInfo>
+        <UserAvatar>
+          <img src={userImage} />
+        </UserAvatar>
+        {
+          styleType == 'type1' &&
+          <Like>
+            <ThumbUp1 />
+            <LikeCount>{likeCount}</LikeCount>
+          </Like>
+        }
+
+      </UserInfo>
 
       <MessageContent>
-        <MessageTextContainer>
-          <Kind>CON</Kind>
-          <MessageText>Sublime is fast. I mean a lot faster than Electron-based apps like Visual Studio Code from Microsoft.</MessageText>
-        </MessageTextContainer>
+        <UserData>
+          <Name href="#">{userNicName}</Name>
+          {
+            styleType == 'type1' &&
+            <Username href="#">{username}</Username>
+          }
+        </UserData>
 
-        <Feedback>
-          <Wrong>
-            <WrongIcon>
-              <DislikeThumb />
-            </WrongIcon>
-            <WrongText>Wrong (-25)</WrongText>
-          </Wrong>
-          <Dot />
-          <Answer>
-            <ArrowRight />
-            <AnswerText>answer (3)</AnswerText>
-          </Answer>
-        </Feedback>
-        
+        <MessageContent>
+          <MessageTextContainer styleType={styleType}>
+            <Kind styleType={styleType}>{type}</Kind>
+            <MessageText>{content}</MessageText>
+          </MessageTextContainer>
+
+          {
+            styleType == 'type1' ?
+            <Feedback>
+              <Wrong>
+                <WrongIcon>
+                  <DislikeThumb />
+                </WrongIcon>
+                <WrongText>Wrong ({wrongCount})</WrongText>
+              </Wrong>
+              <Dot />
+              <Answer>
+                <ArrowRight />
+                <AnswerText>answer ({answerCount})</AnswerText>
+              </Answer>
+            </Feedback> :
+            <GoBack>
+              <GoBackArrow><ArrowLeft /></GoBackArrow>
+              <GoBackText>GO TO MESSAGE</GoBackText>
+            </GoBack>
+          }
+
+        </MessageContent>
       </MessageContent>
-    </MessageContent>
-  </Container>
-)
+    </Container>
+  )
+}
 
 export default Message
