@@ -134,7 +134,8 @@ const Message = (props) => {
     content,
     likeCount = 0,
     wrongCount = 0,
-    answerCount = 0, 
+    answerCount = 0,
+    goBackEvent = () => {}
   } = props
 
   return (
@@ -183,7 +184,7 @@ const Message = (props) => {
                 <AnswerText>answer ({answerCount})</AnswerText>
               </Answer>
             </Feedback> :
-            <GoBack>
+            <GoBack onClick={goBackEvent}>
               <GoBackArrow><ArrowLeft /></GoBackArrow>
               <GoBackText>GO TO MESSAGE</GoBackText>
             </GoBack>
