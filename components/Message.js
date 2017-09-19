@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import rem from '../utils/rem'
 import { darkGrey, grey } from '../utils/colors'
-import { bodyFont, headerFont } from '../utils/fonts'
+import { headerFont } from '../utils/fonts'
 import Dot from './Dot'
 import { ThumbUp1, DislikeThumb, ArrowRight } from './Icons'
 
