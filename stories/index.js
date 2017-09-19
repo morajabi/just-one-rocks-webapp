@@ -9,6 +9,7 @@ import { Button, Welcome } from '@storybook/react/demo'
 import ShareThis from '../components/ShareThis'
 import KarmaBox from '../components/KarmaBox'
 import Rules from '../components/Rules'
+import ReplyBubble from '../components/ReplyBubble'
 
 
 import FilterBar from '../components/FilterBar'
@@ -30,3 +31,12 @@ storiesOf('Header', module)
   
 storiesOf('Message', module)
   .add('Message', () => <div style={{ width: 571 }}><Message /></div>)
+  
+storiesOf('Chat', module)
+  .add('ReplyBubble', () => 
+      <div style={{ width: 355 }}>
+        <ReplyBubble 
+        userPicture=""
+        />
+      </div>
+    )
