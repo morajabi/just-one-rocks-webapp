@@ -25,8 +25,13 @@ const UserAvatar = styled.div`
   background: #333;
   width: ${rem(32)};
   height: ${rem(32)};
-  border: ${rem(3)} solid #636cd5;
+  border: ${rem(3)} solid ${p => p.userColor ? p.userColor : '#636cd5'};
   border-radius: ${rem(22)};
+  over-flow: hidden;
+
+  img {
+    border-radius: ${rem(22)};
+  }
 `
 const colorSwitch = p => p.bubbleStyle == 'primary' ? '#eaeaea' : '#2ea4ff'
 
@@ -82,8 +87,11 @@ const Reply = styled.div`
   }
 `
 const UpVote = styled.button`
-  padding: 0 ${rem(5)};
+  padding: ${rem(10)} ${rem(5)};
   margin-top: ${rem(1)};
+  align-self: flex-end;
+  cursor: pointer;
+  
   background: none;
   border: none;
   color: #d6d6d6;
@@ -107,28 +115,42 @@ const ArrowUpIcon = styled.div`
 const ReplyBubble = ({ 
   align,
   bubbleStyle,
+  userPicture,
+  userColor,
+  content,
+  upVoteCount = 0,
+  onUpVote = () => {},
 }) => (
   <Container align={align}>
     <User align={align}>
-      <UserAvatar></UserAvatar>
+      <UserAvatar userColor={userColor}>
+        <img src={userPicture} />
+      </UserAvatar>
     </User>
     <ReplayContainer>
       <Reply align={align} bubbleStyle={bubbleStyle}>
-        Your are poor & fat
+        {content}
       </Reply>
     </ReplayContainer>
-    <UpVote>
+    <UpVote onClick={onUpVote}>
         <ArrowUpIcon>
           <ArrowUp />
         </ArrowUpIcon>
-        <UpVoteCount>22</UpVoteCount>
+        <UpVoteCount>
+          {upVoteCount}
+        </UpVoteCount>
       </UpVote>
   </Container>
 )
 
 ReplyBubble.propTypes = {
   align: PropTypes.oneOf(['start', 'end']).isRequired,
-  bubbleStyle: PropTypes.oneOf(['primary', 'secondry']),
+  bubbleStyle: PropTypes.oneOf(['primary', 'secondary']),
+  userPicture: PropTypes.string,
+  userColor: PropTypes.string,
+  content: PropTypes.string,
+  upVoteCount: PropTypes.number,
+  onUpVote: PropTypes.fun,
 }
 
 export default ReplyBubble
