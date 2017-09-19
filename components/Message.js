@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
 import rem from '../utils/rem'
-import { darkGrey, Grey } from '../utils/colors'
+import { darkGrey, grey } from '../utils/colors'
+import { headerFont } from '../utils/fonts'
 import Dot from './Dot'
 import { ThumbUp1, DislikeThumb, ArrowRight } from './Icons'
-import { messageFont, headerFont } from '../utils/fonts'
 
 const Container = styled.div`
   font-family: ${headerFont};
@@ -21,14 +21,14 @@ const UserInfo = styled.div`
 `
 const MessageContent = styled.div`
   flex: 0 1 100%;
-  font-family: ${messageFont};
+  font-family: ${bodyFont};
 `
 const UserAvatar = styled.div`
   background: #333;
   width: ${rem(32)};
   height: ${rem(32)};
   border: 3px solid #636cd5;
-  border-radius: 22px;
+  border-radius: ${rem(22)};
 `
 const Like = styled.div`
   width: ${rem(22)};
@@ -54,7 +54,7 @@ const Name = styled.a`
 `
 const Username = styled.a`
   font-size: ${rem(14)};
-  color: ${Grey};
+  color: ${grey};
   text-decoration: none;
 `
 const MessageTextContainer = styled.p`
@@ -82,7 +82,7 @@ const Feedback = styled.div`
   font-size: ${rem(11)};
   letter-spacing: ${rem(0.44)};
   text-transform: uppercase;
-  color: ${Grey};
+  color: ${grey};
 `
 const Wrong = styled.div`
   padding: ${rem(5)} 0;
