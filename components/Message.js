@@ -189,7 +189,6 @@ const Message = (props) => {
               <GoBackText>GO TO MESSAGE</GoBackText>
             </GoBack>
           }
-
         </MessageContent>
       </MessageContent>
     </Container>
