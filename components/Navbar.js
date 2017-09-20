@@ -7,10 +7,10 @@ import { darkGrey } from '../utils/colors'
 import Dot from './Dot'
 
 const Container = styled.div`
-  font-family: ${headerFont};
-  width: 100%;
   display: flex;
+  width: 100%;
   justify-content: space-between;
+  font-family: ${headerFont};
 `
 const LogoTitleContainer = styled.div`
   width: auto;
@@ -29,29 +29,28 @@ const Logo = styled.img`
   margin-left: ${rem(40)};
 `
 const Title = styled.p`
-  margin: 0;
-  margin-left: ${rem(20)};
+  margin: 0 ${rem(20)} 0 0;
   padding-top: ${rem(32)};
   line-height: ${rem(33)};
   font-size: ${rem(22)};
-  color: ${darkGrey};
   font-weight: 600;
+  color: ${darkGrey};
 `
 const Nav = styled.nav`
-  color: ${darkGrey};
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  color: ${darkGrey};
 `
 const LoginLink = styled.div`
+  padding: 0 ${rem(10)};
   font-weight: bold;
   font-size: ${rem(22)};
-  padding: 0 ${rem(10)};
 `
 const RegisterLink = styled.div`
+  padding: 0 ${rem(10)};
   font-weight: bold;
   font-size: ${rem(22)};
-  padding: 0 ${rem(10)};
 `
 
 const Navbar = () => (
