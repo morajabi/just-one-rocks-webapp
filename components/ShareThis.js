@@ -57,16 +57,25 @@ const Dot = styled.div`
   font-size: 30px;
   border-radius: 50%;
 `
+const SvgContainer = styled.div`
+  width: ${rem(22)};
+  height: ${rem(22)};
+  cursor: pointer;
+`
 
-const ShareThis = ( twitterLink, facebookLink ) => (
+const ShareThis = ({ onTwitterClick, onFacebookClick }) => (
   <ShareThisCountainer>
     <ShareThisTitle>Share this</ShareThisTitle>
     <Subtitle>and get unlimited credits!</Subtitle>
     <ShareTitle>Tell your frends via</ShareTitle>
     <SocialContainer>
-      <Twitter onClick={twitterLink} />
+      <SvgContainer onClick={onTwitterClick}>
+        <Twitter />
+      </SvgContainer>
       <Dot />
-      <Facebook onClick={facebookLink} />
+      <SvgContainer onClick={onFacebookClick} >
+        <Facebook />
+      </SvgContainer>
     </SocialContainer>
   </ShareThisCountainer>
 )
