@@ -12,13 +12,13 @@ const Container = styled.div`
   align-items: center;
 `
 const SectionRight = styled.div`
-  flex: 0 1 40%;
+  flex: 1 0 auto;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 `
 const SectionLeft = styled.div`
-  flex: 0 1 40%;
+  flex: 1 0 auto;
 `
 const LogoContainer = styled.div`
   width: ${rem(66)};
@@ -26,6 +26,7 @@ const LogoContainer = styled.div`
   cursor: pointer;
 
   img {
+    display: block;
     width: ${rem(66)};
     height: ${rem(35)};
     filter: brightness(0) invert(0);
@@ -57,6 +58,7 @@ const CopyRight = styled.div`
   color: rgba(0, 0, 0, 0.39);
 `
 const WaveLiveContainer = styled.div`
+  flex: 1 0 auto;
   margin: 0;
   opacity: 0.04;
 `
