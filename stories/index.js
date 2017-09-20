@@ -124,7 +124,8 @@ storiesOf('ReplyBubble', module)
     .add('Answers for', () => 
       <div style={{ width: 355, background: '#fbfbfb'}}>
         <AnswersFor />
-
+      </div>
+  ) 
   storiesOf('Footer', module)
     .add('navigtion', () => 
       <div style={{ width: 1200, background: '#f2f2f2'}}>
