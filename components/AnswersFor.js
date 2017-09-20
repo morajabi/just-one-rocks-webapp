@@ -11,7 +11,7 @@ const Container = styled.div`
 `
 const Title = styled.div`
   padding: ${rem(10)};
-  font-weight: bold;
+  font-weight: 800;
   font-size: ${rem(15)};
   color: rgba(0, 0, 0, 0.13);
 `
