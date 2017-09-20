@@ -10,6 +10,7 @@ import ShareThis from '../components/ShareThis'
 import KarmaBox from '../components/KarmaBox'
 import Rules from '../components/Rules'
 import ReplyBubble from '../components/ReplyBubble'
+import Navbar from '../components/Navbar'
 
 
 import FilterBar from '../components/FilterBar'
@@ -108,3 +109,11 @@ storiesOf('ReplyBubble', module)
         />
       </div>
   )
+
+
+  storiesOf('Nav bar', module)
+    .add('RB start', () => 
+      <div style={{ width: 1200 }}>
+        <Navbar />
+      </div>
+    )
