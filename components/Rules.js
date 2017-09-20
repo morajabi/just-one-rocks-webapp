@@ -1,30 +1,32 @@
 import styled from 'styled-components'
 
 import rem from '../utils/rem'
+import { darkGrey } from '../utils/colors'
+import { headerFont } from '../utils/fonts'
 
 const Countainer = styled.div`
-  font-family: 'Avenir Next';
+  font-family: ${headerFont};
   width: 100%;
   font-size: ${rem(30)};
-  color: #555;
+  color: ${darkGrey};
 `
 const Title = styled.h2`
   font-size: ${rem(30)};
   font-weight: 700;
-  color: #555;
+  color: ${darkGrey};
   margin: 0;
 `
 const SubTitle = styled.p`
   margin: ${rem(12)} 0 0;
   font-size: ${rem(16)};
-  color: #555;
+  color: ${darkGrey};
   font-weight: 400;
 `
 const RuleList = styled.ul`
   margin: ${rem(20)} 0 0;
   padding: 0;
   font-size: ${rem(16)};
-  color: #555;
+  color: ${darkGrey};
   font-weight: 400;
   line-height: 1.44;
 `
@@ -34,7 +36,7 @@ const Item = styled.li`
   margin: 0;
   margin-bottom: ${rem(20)};
   font-size: ${rem(16)};
-  color: #555;
+  color: ${darkGrey};
 
   &:before {
     content: ' ';
