@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import rem from '../utils/rem'
 import { darkGrey, grey } from '../utils/colors'
 import { bodyFont, headerFont } from '../utils/fonts'
+import { ButtonReset } from '../utils/reset'
 import Dot from './Dot'
 import { ThumbUp1, DislikeThumb, ArrowRight, ArrowLeft } from './Icons'
 
@@ -34,9 +35,12 @@ const Like = styled.div`
   width: ${rem(22)};
   height: ${rem(24)};
   margin-top: ${rem(10)};
+  cursor: pointer;
 `
 const LikeCount = styled.div`
-  font-size: ${rem(20)};
+  width: 100%;
+  text-align: center;
+  font-size: ${rem(16)};
   letter-spacing: ${rem(0.78)};
   text-transform: uppercase;
   color: #bebebe;
@@ -79,23 +83,27 @@ const Kind = styled.p`
 `
 const Feedback = styled.div`
   font-weight: bold;
-  margin-top: ${rem(20)};
-  font-size: ${rem(11)};
+  margin-top: ${rem(16)};
+  font-size: ${rem(12)};
   letter-spacing: ${rem(0.44)};
   text-transform: uppercase;
   color: ${grey};
 `
-const Wrong = styled.div`
+const Wrong = styled.button`
+  ${ButtonReset}
   padding: ${rem(5)} 0;
   display: inline;
   margin-right: ${rem(11)};
+  cursor: pointer;
 `
-const Answer = styled.div`
+const Answer = styled.button`
+  ${ButtonReset}
   padding: ${rem(5)} 0;
   display: inline;
   margin-left: 10px;
+  cursor: pointer;
 `
-const WrongIcon = styled.div`
+const SvgIcon = styled.div`
   padding-top: ${rem(5)};
   display: inline;
   margin-right: 4px;
@@ -104,11 +112,15 @@ const WrongText = styled.div`
   padding-top: ${rem(5)};
   display: inline;
   margin-right: ${rem(4)};
+  font-weight: 700;
+  color: #bdbdbd;
 `
 const AnswerText = styled.div`
   padding-top: ${rem(5)};
   display: inline;
   margin-right: ${rem(4)};
+  font-weight: 700;
+  color: #bdbdbd;
 `
 const GoBack = styled.div`
   font-weight: bold;
@@ -136,7 +148,11 @@ const Message = (props) => {
     likeCount = 0,
     wrongCount = 0,
     answerCount = 0,
-    goBackEvent = () => {}
+    goBackEvent = () => {},
+    onLikeClick = () => {},
+    onUserClick = () => {},
+    onWrongClick = () => {},
+    onAnswerClick = () => {},
   } = props
 
   return (
@@ -147,7 +163,7 @@ const Message = (props) => {
         </UserAvatar>
         {
           styleType == 'type1' &&
-          <Like>
+          <Like onClick={onLikeClick}>
             <ThumbUp1 />
             <LikeCount>{likeCount}</LikeCount>
           </Like>
@@ -156,7 +172,7 @@ const Message = (props) => {
       </UserInfo>
 
       <MessageContent>
-        <UserData>
+        <UserData onClick={onUserClick}>
           <Name href="#">{userNicName}</Name>
           {
             styleType == 'type1' &&
@@ -173,16 +189,18 @@ const Message = (props) => {
           {
             styleType == 'type1' ?
             <Feedback>
-              <Wrong>
-                <WrongIcon>
+              <Wrong onClick={onWrongClick}>
+                <SvgIcon>
                   <DislikeThumb />
-                </WrongIcon>
+                </SvgIcon>
                 <WrongText>Wrong ({wrongCount})</WrongText>
               </Wrong>
               <Dot />
-              <Answer>
-                <ArrowRight />
-                <AnswerText>answer ({answerCount})</AnswerText>
+              <Answer onClick={onAnswerClick}>
+                <SvgIcon>
+                  <ArrowRight />
+                </SvgIcon>
+                <AnswerText>Answer ({answerCount})</AnswerText>
               </Answer>
             </Feedback> :
             <GoBack onClick={goBackEvent}>

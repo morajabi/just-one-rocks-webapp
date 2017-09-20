@@ -51,10 +51,10 @@ const FilterTag = styled.span`
 `
 
 const FilterBar = ({
-  onMostRecentClick=()=>{},
-  onMostPopularClick=()=>{},
-  onProsClick=()=>{},
-  onConsClick=()=>{},
+  onMostRecentClick = () => {},
+  onMostPopularClick = () => {},
+  onProsClick = () => {},
+  onConsClick = () => {},
 }) => (
   <Container>
     <SortContainer>

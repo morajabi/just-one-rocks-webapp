@@ -56,8 +56,8 @@ const RegisterLink = styled.div`
 `
 
 const Navbar = ({
-  onLoginClick=()=>{},
-  onRegisterClick=()=>{},
+  onLoginClick = () => {},
+  onRegisterClick =() => {},
 }) => (
   <Container>
     <LogoTitleContainer>
