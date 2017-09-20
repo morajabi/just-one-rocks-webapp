@@ -25,12 +25,32 @@ storiesOf('Button', module)
   .add('with some emoji', () => <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>)
 
 storiesOf('SideBar', module)
-  .add('ShareThis', () => <div style={{ width: 262 }}><ShareThis /></div>)
-  .add('KarmaBox', () => <div style={{ width: 232 }}><KarmaBox /></div>)
+  .add('ShareThis', () => <div style={{ width: 262 }}>
+      <ShareThis
+        onTwitterClick={action('twisiter')}
+        onFacebookClick={action('facsebook')}
+      />
+    </div>)
+  .add('KarmaBox', () => 
+  <div style={{ width: 232 }}>
+    <KarmaBox 
+      title="Yes! You have"
+      scoreCount={18}
+      onShareClick={action('ShareLink')}
+    />
+  </div>)
   .add('Rules', () => <div style={{ width: 242 }}><Rules /></div>)
 
 storiesOf('Header', module)
-  .add('FilterBar', () => <div style={{ width: 571 }}><FilterBar /></div>)
+  .add('FilterBar', () => 
+  <div style={{ width: 571 }}>
+    <FilterBar
+      onMostRecentClick={action('a1')}
+      onMostPopularClick={action('a2')}
+      onProsClick={action('a3')}
+      onConsClick={action('a4')}
+    />
+  </div>)
   
 storiesOf('Message', module)
   .add('Message', () => 
@@ -116,7 +136,10 @@ storiesOf('ReplyBubble', module)
   storiesOf('header', module)
     .add('Navbar', () => 
       <div style={{ width: 1200, background: '#f2f2f2'}}>
-        <Navbar />
+        <Navbar 
+          onLoginClick={action('onLoginClick')}
+          onRegisterClick={action('onRegisterClick')}
+        />
       </div>
     )
 
@@ -129,6 +152,11 @@ storiesOf('ReplyBubble', module)
   storiesOf('Footer', module)
     .add('navigtion', () => 
       <div style={{ width: 1200, background: '#f2f2f2'}}>
-        <Footer />
+        <Footer 
+          onLogoClick={action('onLogoClick')}
+          onTeamClick={action('onTeamClick')}
+          onContactClick={action('onContactClick')}
+          onTermsClick={action('onTermsClick')}
+        />
       </div>
     )
