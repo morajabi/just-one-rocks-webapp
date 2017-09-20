@@ -58,10 +58,10 @@ const Username = styled.a`
   text-decoration: none;
 `
 const MessageTextContainer = styled.p`
-  font-size: ${ p => p.styleType == 'type1' ? rem(14) : rem(13) };
+  font-size: ${p => p.styleType == 'type1' ? rem(14) : rem(13)};
   line-height: ${rem(20)};
   color: ${darkGrey};
-  margin-top: ${ p => p.styleType == 'type1' ? rem(10) : rem(2) };
+  margin-top: ${p => p.styleType == 'type1' ? rem(10) : rem(2)};
 `
 const MessageText = styled.span`
   color: ${darkGrey};
@@ -69,7 +69,7 @@ const MessageText = styled.span`
 const Kind = styled.p`
   margin: 0;
   font-family: ${headerFont};
-  font-size: ${ p => p.styleType == 'type1' ? rem(17) : rem(16) };
+  font-size: ${p => p.styleType == 'type1' ? rem(17) : rem(16)};
   letter-spacing: -0.26px;
   color: #ff9b2f;
   display: inline-block;
