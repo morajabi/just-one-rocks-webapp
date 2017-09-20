@@ -11,6 +11,7 @@ import KarmaBox from '../components/KarmaBox'
 import Rules from '../components/Rules'
 import ReplyBubble from '../components/ReplyBubble'
 import Navbar from '../components/Navbar'
+import AnswersFor from '../components/AnswersFor'
 import Footer from '../components/Footer'
 
 
@@ -118,6 +119,12 @@ storiesOf('ReplyBubble', module)
         <Navbar />
       </div>
     )
+
+  storiesOf('replay bar', module)
+    .add('Answers for', () => 
+      <div style={{ width: 355, background: '#fbfbfb'}}>
+        <AnswersFor />
+
   storiesOf('Footer', module)
     .add('navigtion', () => 
       <div style={{ width: 1200, background: '#f2f2f2'}}>

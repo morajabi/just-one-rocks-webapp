@@ -116,6 +116,7 @@ const GoBack = styled.div`
   letter-spacing: ${rem(0.55)};
   color: #d4d4d4;
   cursor: pointer;
+  padding-bottom: ${rem(10)};
 `
 const GoBackArrow = styled.div`
   display: inline;
