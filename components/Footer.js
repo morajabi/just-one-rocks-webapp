@@ -11,6 +11,15 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: center;
 `
+const SectionRight = styled.div`
+  flex: 0 1 40%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`
+const SectionLeft = styled.div`
+  flex: 0 1 40%;
+`
 const LogoContainer = styled.div`
   width: ${rem(66)};
   height: ${rem(35)};
@@ -52,22 +61,28 @@ const WaveLiveContainer = styled.div`
   opacity: 0.04;
 `
 
+
 const Footer = () => (
   <Container>
-    <LogoContainer>
-      <img src="/static/logo.svg" />
-    </LogoContainer>
-    <Nav>
-      <NavItemContainer>
-        <Item href="#">Team</Item>
-        <Item href="#">Contact</Item>
-        <Item href="#">Terms</Item>
-        <CopyRight>2017 ©️</CopyRight>
-      </NavItemContainer>
-    </Nav>
+    <SectionRight>
+      <LogoContainer>
+        <img src="/static/logo.svg" />
+      </LogoContainer>
+      <Nav>
+        <NavItemContainer>
+          <Item href="#">Team</Item>
+          <Item href="#">Contact</Item>
+          <Item href="#">Terms</Item>
+          <CopyRight>2017 ©️</CopyRight>
+        </NavItemContainer>
+      </Nav>
+    </SectionRight>
+
     <WaveLiveContainer>
       <WaveLine />
     </WaveLiveContainer>
+
+    <SectionLeft />
   </Container>
 )
 
