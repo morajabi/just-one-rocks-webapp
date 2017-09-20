@@ -1,0 +1,14 @@
+<svg width="180" height="86" viewBox="0 0 180 86" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Background Logo</title>
+  <g transform="translate(-120)">
+    <use xlink:href="#a" transform="translate(120 -10)" fill="#FEFEFE" fill-opacity=".78"/>
+    <mask id="b">
+      <use xlink:href="#a" fill="#fff" transform="translate(120 -10)"/>
+    </mask>
+    <use xlink:href="#c" transform="translate(120 -10)" fill-opacity=".01" mask="url(#b)"/>
+  </g>
+  <defs>
+    <path id="a" d="M0 0h180l-16.5 87.5-150 8L0 0z"/>
+    <path id="c" d="M0 0v-10h-11.5l1.6 11.4L0 0zm180 0l9.83 1.85L192.06-10H180V0zm-16.5 87.5l.53 10 7.84-.43 1.46-7.72-9.83-1.85zm-150 8l-9.9 1.4 1.28 9.07 9.15-.48-.53-10zM0 10h180v-20H0v20zM170.17-1.85l-16.5 87.5 19.66 3.7 16.5-87.5-19.66-3.7zm-7.2 79.36l-150 8 1.06 20 150-8-1.06-20zM23.4 94.1L9.9-1.4-9.9 1.4 3.6 96.9l19.8-2.8z"/>
+  </defs>
+</svg>

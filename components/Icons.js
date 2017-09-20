@@ -52,3 +52,11 @@ export const DislikeThumb = () => (
     <path id="a" fill="#C6C6C6" d="M8.5.48h2.04v4.55H8.5V.47zM1.38 4.64l.02-.12c-.74-.2-.34-1.1.2-1.15v-.1c-.7-.2-.36-1.1.2-1.16l.02-.1c-.58-.1-.75-1.2.13-1.2h4.38c.3 0 .6.37.8.37h.2v3.5c-.23.16-.54.36-.7.5C6.3 5.48 5 7.64 5 7.9l.03 1.45s-.26.33-.83.1c0 0-.48-.94-.53-1.68 0 0 .22-1.52.33-2H.97c-.74 0-.3-1.02.4-1.13z"/>
   </svg>
 )
+
+export const ArrowLeft = () => (
+  <svg width="11" height="10" viewBox="0 0 11 10" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+    <title>ArrowLeft</title>
+    <path id="a" transform="matrix(-1 0 0 1 11 1)" fill="#D4D4D4" d="M10 4.12l.35.36.36-.35-.34-.36-.36.35zm-10 .5h10v-1H0v1zm10.36-.85l-4-4.12-.72.7 4 4.12.72-.7zm-.7 0l-4 3.87.7.72 4-3.88-.7-.72z"/>
+  </svg>
+)
+

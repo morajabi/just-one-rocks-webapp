@@ -10,6 +10,7 @@ import ShareThis from '../components/ShareThis'
 import KarmaBox from '../components/KarmaBox'
 import Rules from '../components/Rules'
 import ReplyBubble from '../components/ReplyBubble'
+import Navbar from '../components/Navbar'
 
 
 import FilterBar from '../components/FilterBar'
@@ -30,7 +31,31 @@ storiesOf('Header', module)
   .add('FilterBar', () => <div style={{ width: 571 }}><FilterBar /></div>)
   
 storiesOf('Message', module)
-  .add('Message', () => <div style={{ width: 571 }}><Message /></div>)
+  .add('Message', () => 
+    <div style={{ width: 571 }}>
+      <Message 
+        styleType="type1"
+        userImage=""
+        userNicName="Gilfoyle St"
+        username="@gilflmx"
+        likeCount={50}
+        type="con"
+        content="Sublime is fast. I mean a lot faster than Electron-based apps like Visual Studio Code from Microsoft."
+        wrongCount="-25"
+        answerCount="30"
+      />
+    </div>)
+  .add('Message type 2', () => 
+    <div style={{ width: 355 }}>
+      <Message 
+        styleType="type2"
+        userNicName="Gilfoyle St"
+        type="con"
+        content="Sublime is fast. I mean a lot faster than Electron-based apps like Visual Studio Code from Microsoft."
+        goBackEvent={action('goBack')}
+      />
+    </div>
+  )
   
 storiesOf('ReplyBubble', module)
   .add('RB start', () => 
@@ -84,3 +109,11 @@ storiesOf('ReplyBubble', module)
         />
       </div>
   )
+
+
+  storiesOf('Nav bar', module)
+    .add('RB start', () => 
+      <div style={{ width: 1200, background: '#eee'}}>
+        <Navbar />
+      </div>
+    )
