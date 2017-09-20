@@ -50,17 +50,22 @@ const FilterTag = styled.span`
   `}
 `
 
-const FilterBar = () => (
+const FilterBar = ({
+  onMostRecentClick=()=>{},
+  onMostPopularClick=()=>{},
+  onProsClick=()=>{},
+  onConsClick=()=>{},
+}) => (
   <Container>
     <SortContainer>
       <Text>sort by</Text>
-      <FilterTag>most recent</FilterTag>
-      <FilterTag primary>most popular</FilterTag>
+      <FilterTag onClick={onMostRecentClick}>most recent</FilterTag>
+      <FilterTag onClick={onMostPopularClick} primary>most popular</FilterTag>
     </SortContainer>
     <SortContainer>
       <Text>filter</Text>
-      <FilterTag>pros</FilterTag>
-      <FilterTag>cons</FilterTag>
+      <FilterTag onClick={onProsClick}>pros</FilterTag>
+      <FilterTag onClick={onConsClick}>cons</FilterTag>
     </SortContainer>
   </Container>
 )
