@@ -12,6 +12,7 @@ import Rules from '../components/Rules'
 import ReplyBubble from '../components/ReplyBubble'
 import Navbar from '../components/Navbar'
 import AnswersFor from '../components/AnswersFor'
+import Footer from '../components/Footer'
 
 
 import FilterBar from '../components/FilterBar'
@@ -112,9 +113,9 @@ storiesOf('ReplyBubble', module)
   )
 
 
-  storiesOf('Nav bar', module)
-    .add('RB start', () => 
-      <div style={{ width: 1200, background: '#eee'}}>
+  storiesOf('header', module)
+    .add('Navbar', () => 
+      <div style={{ width: 1200, background: '#f2f2f2'}}>
         <Navbar />
       </div>
     )
@@ -123,5 +124,10 @@ storiesOf('ReplyBubble', module)
     .add('Answers for', () => 
       <div style={{ width: 355, background: '#fbfbfb'}}>
         <AnswersFor />
+
+  storiesOf('Footer', module)
+    .add('navigtion', () => 
+      <div style={{ width: 1200, background: '#f2f2f2'}}>
+        <Footer />
       </div>
     )
