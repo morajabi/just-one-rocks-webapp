@@ -50,6 +50,7 @@ const Item = styled.a`
   font-weight: bold;
   font-size: ${rem(12)};
   color: rgba(0, 0, 0, 0.39);
+  cursor: pointer;
 `
 const CopyRight = styled.div`
   padding: 0 ${rem(10)};
