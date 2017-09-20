@@ -113,7 +113,7 @@ storiesOf('ReplyBubble', module)
 
   storiesOf('Nav bar', module)
     .add('RB start', () => 
-      <div style={{ width: 1200 }}>
+      <div style={{ width: 1200, background: '#eee'}}>
         <Navbar />
       </div>
     )
