@@ -78,6 +78,26 @@ storiesOf('Message', module)
       />
     </div>
   )
+  .add('Message type with buttons', () => 
+    <div style={{ width: 355 }}>
+      <Message 
+        styleType="type1"
+        userImage=""
+        userNicName="Gilfoyle St"
+        username="@gilflmx"
+        likeCount={50}
+        type="con"
+        content="Sublime is fast. I mean a lot faster than Electron-based apps like Visual Studio Code from Microsoft."
+        wrongCount="-25"
+        answerCount="30"
+        goBackEvent={action('goBack')}
+        onLikeClick={action('onLikeClick')}
+        onUserClick={action('onUserClick')}
+        onWrongClick={action('onWrongClick')}
+        onAnswerClick={action('onAnswerClick')}
+      />
+    </div>
+  )
   
 storiesOf('ReplyBubble', module)
   .add('RB start', () => 
@@ -116,6 +136,7 @@ storiesOf('ReplyBubble', module)
           content="Hi!"
           upVoteCount={12}
           onUpVote={ action('Upvote')}
+          onUserClick={ action('onUserClick')}
         />
       </div>
   )
@@ -128,6 +149,7 @@ storiesOf('ReplyBubble', module)
           content="Hi h s lkasdjlk asjdkla jskdsaj dlkdkladlklkas asdjaks jkldsaj klasas dashkjdasj dlkajsl kdjasld!"
           upVoteCount={12}
           onUpVote={ action('clicked') }
+          onUserClick={ action('onUserClick')}
         />
       </div>
   )
