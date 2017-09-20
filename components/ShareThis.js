@@ -1,29 +1,33 @@
-import React,{ Component } from 'react'
+import PropTypes from 'prop-types'  
 import styled from 'styled-components'
 
+import rem from '../utils/rem'
+import { darkGrey } from '../utils/colors'
+import { headerFont } from '../utils/fonts'
 import { Twitter, Facebook } from './Icons'
 
 const ShareThisCountainer = styled.div`
   background: rgba(0, 0, 0, 0.02);
-  font-family: 'Avenir Next';
+  font-family: ${headerFont};
   font-style: normal;
   overflow: hidden;
 `
 const ShareThisTitle = styled.h2`
-  font-size: 34px;
+  font-size: ${rem(34)};
   font-style: bold;
-  font-weight: 700;
+  font-weight: 800;
   text-align: center;
   margin-top: 20px;
   margin-bottom: 0;
   display: block;
-  color: #555;
+  color: ${darkGrey};
 `
 const Subtitle = styled.span`
   width: 100%;
   display: block;
-  font-size: 18px;
+  font-size: ${rem(18)};
   text-align: center;
+  font-weight: 600;
   color: #828282;
 `
 
@@ -31,7 +35,7 @@ const ShareTitle = styled.span`
   width: 100%;
   display: block;
   font-weight: 600;
-  font-size: 12px;
+  font-size: ${rem(12)};
   letter-spacing: 0.72px;
   color: #a9a9a9;
   text-align: center;
@@ -54,19 +58,22 @@ const Dot = styled.div`
   border-radius: 50%;
 `
 
-export default class ShareThis extends Component {
-  render(){
-    return (
-      <ShareThisCountainer>
-        <ShareThisTitle>Share this</ShareThisTitle>
-        <Subtitle>and get unlimited credits!</Subtitle>
-        <ShareTitle>Tell your frends via</ShareTitle>
-        <SocialContainer>
-          <Twitter />
-          <Dot />
-          <Facebook />
-        </SocialContainer>
-      </ShareThisCountainer>
-    )
-  }
+const ShareThis = ( twitterLink, facebookLink ) => (
+  <ShareThisCountainer>
+    <ShareThisTitle>Share this</ShareThisTitle>
+    <Subtitle>and get unlimited credits!</Subtitle>
+    <ShareTitle>Tell your frends via</ShareTitle>
+    <SocialContainer>
+      <Twitter onClick={twitterLink} />
+      <Dot />
+      <Facebook onClick={facebookLink} />
+    </SocialContainer>
+  </ShareThisCountainer>
+)
+
+ShareThis.propTypes = {
+  twitterLink: PropTypes.func.isRequired,
+  facebookLink: PropTypes.func.isRequired,
 }
+
+export default ShareThis
