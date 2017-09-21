@@ -5,7 +5,7 @@ import { darkGrey, grey } from '../utils/colors'
 import { bodyFont, headerFont } from '../utils/fonts'
 import { ButtonReset } from '../utils/reset'
 import Dot from './Dot'
-import { ThumbUp1, DislikeThumb, ArrowRight, ArrowLeft } from './Icons'
+import { ThumbUp1, DislikeThumb, ArrowRight, ArrowLeft, ArrowUp } from './Icons'
 
 const Container = styled.div`
   font-family: ${headerFont};
@@ -136,6 +136,73 @@ const GoBackArrow = styled.div`
 const GoBackText = styled.span`
   margin-left: ${rem(5)};
 `
+/* Answers Highlighted */
+const AnswerHighlight = styled.div`
+  background: #fafafa;
+  border: ${rem(1)} solid #fafafa;
+  box-sizing: border-box;
+  padding: ${rem(10)};
+  margin-top: ${rem(4)};
+`
+const UpVote = styled.div`
+  flex: 0 0 auto;
+  padding: ${rem(3.5)} ${rem(7)} 0 0;
+  font-size: 0;
+`
+const UpVoteCount = styled.div`
+  display: inline-block;
+  margin-left: ${rem(2)};
+  font-size: ${rem(11)};
+`
+const ArrowUpIcon = styled.div`
+  text-align: center;
+  display: inline-block;
+`
+const AnswerItemContainer = styled.div`
+  display: flex;
+`
+const AnswerItem = styled.div`
+  flex: 0 1 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: ${rem(5)};
+  font-family: ${bodyFont};
+  font-size: ${rem(12)};
+`
+const AnswerUsername = styled.span`
+  font-family: ${headerFont};
+  font-weight: bold;
+  font-size: ${rem(14)};
+  color: #555;
+`
+const AnswerContent = styled.div`
+  margin-left: ${rem(10)};
+  margin-top: ${rem(2)};
+  font-size: ${rem(12)};
+`
+const JoinContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: ${rem(18)};
+`
+const JoinButton = styled.div`
+  margin: 0 auto;
+  display: inline-block;
+  font-weight: bold;
+  font-size: ${rem(11)};
+  letter-spacing: 0.44px;
+  text-transform: uppercase;
+  color: #dcdcdc;
+`
+const JoinIcon = styled.div`
+  width: ${rem(11)};
+  height: ${rem(10)};
+  transform: rotate(-180deg);
+  display: inline-block;
+  padding-right: ${rem(5)};
+`
 
 const Message = (props) => {
   const {
@@ -153,6 +220,7 @@ const Message = (props) => {
     onUserClick = () => {},
     onWrongClick = () => {},
     onAnswerClick = () => {},
+    answerHighlightArray=[]
   } = props
 
   return (
@@ -188,6 +256,7 @@ const Message = (props) => {
 
           {
             styleType == 'type1' ?
+
             <Feedback>
               <Wrong onClick={onWrongClick}>
                 <SvgIcon>
@@ -203,10 +272,37 @@ const Message = (props) => {
                 <AnswerText>Answer ({answerCount})</AnswerText>
               </Answer>
             </Feedback> :
+
             <GoBack onClick={goBackEvent}>
               <GoBackArrow><ArrowLeft /></GoBackArrow>
               <GoBackText>GO TO MESSAGE</GoBackText>
             </GoBack>
+          }
+
+          {
+            styleType == 'type1' &&
+            <AnswerHighlight>
+            {
+              answerHighlightArray.map((p, i) => (
+                <AnswerItemContainer key={i}>
+                  <UpVote onClick={p.onUpVoteClick}>
+                    <ArrowUpIcon>
+                      <ArrowUp />
+                    </ArrowUpIcon>
+                    <UpVoteCount>{p.UpVoteCount}</UpVoteCount>
+                  </UpVote>
+                  <AnswerItem>
+                    <AnswerUsername>{p.answerUsername}</AnswerUsername>
+                    <AnswerContent>{p.answerContent}</AnswerContent>
+                  </AnswerItem>
+                </AnswerItemContainer>
+            ))}
+              <JoinContainer>
+                <JoinButton>
+                  JOIN <JoinIcon><ArrowLeft /></JoinIcon>
+                </JoinButton>
+              </JoinContainer>
+            </AnswerHighlight>
           }
         </MessageContent>
       </MessageContent>
