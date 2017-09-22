@@ -13,10 +13,10 @@ import ReplyBubble from '../components/ReplyBubble'
 import Navbar from '../components/Navbar'
 import AnswersFor from '../components/AnswersFor'
 import Footer from '../components/Footer'
+
+
 import FilterBar from '../components/FilterBar'
 import Message from '../components/Message'
-import ComposeMessage from '../components/compose/ComposeMessage'
-import ComposeReply from '../components/compose/ComposeReply'
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />)
 
@@ -30,21 +30,19 @@ storiesOf('SideBar', module)
         onTwitterClick={action('twisiter')}
         onFacebookClick={action('facsebook')}
       />
-    </div>
-  )
-  .add('KarmaBox', () =>
-    <div style={{ width: 232 }}>
-      <KarmaBox
-        title="Yes! You have"
-        scoreCount={18}
-        onShareClick={action('ShareLink')}
-      />
-    </div>
-  )
+    </div>)
+  .add('KarmaBox', () => 
+  <div style={{ width: 232 }}>
+    <KarmaBox 
+      title="Yes! You have"
+      scoreCount={18}
+      onShareClick={action('ShareLink')}
+    />
+  </div>)
   .add('Rules', () => <div style={{ width: 242 }}><Rules /></div>)
 
 storiesOf('Header', module)
-  .add('FilterBar', () =>
+  .add('FilterBar', () => 
   <div style={{ width: 571 }}>
     <FilterBar
       onMostRecentClick={action('a1')}
@@ -53,11 +51,11 @@ storiesOf('Header', module)
       onConsClick={action('a4')}
     />
   </div>)
-
+  
 storiesOf('Message', module)
-  .add('Message', () =>
+  .add('Message', () => 
     <div style={{ width: 571 }}>
-      <Message
+      <Message 
         styleType="type1"
         userImage=""
         userNicName="Gilfoyle St"
@@ -69,9 +67,9 @@ storiesOf('Message', module)
         answerCount="30"
       />
     </div>)
-  .add('Message type 2', () =>
+  .add('Message type 2', () => 
     <div style={{ width: 355 }}>
-      <Message
+      <Message 
         styleType="type2"
         userNicName="Gilfoyle St"
         type="con"
@@ -80,9 +78,9 @@ storiesOf('Message', module)
       />
     </div>
   )
-  .add('Message type with buttons', () =>
+  .add('Message type with buttons', () => 
     <div style={{ width: 571 }}>
-      <Message
+      <Message 
         styleType="type1"
         userImage=""
         userNicName="Gilfoyle St"
@@ -100,9 +98,9 @@ storiesOf('Message', module)
       />
     </div>
   )
-  .add('Message with answers highlight', () =>
+  .add('Message with Answer Highlit', () => 
     <div style={{ width: 571 }}>
-      <Message
+      <Message 
         styleType="type1"
         userImage=""
         userNicName="Gilfoyle St"
@@ -119,14 +117,14 @@ storiesOf('Message', module)
         onAnswerClick={action('onAnswerClick')}
         answerHighlightArray={[
           {
-            UpVoteCount: 10,
-            answerUsername: 'Gavin Belson',
+            UpVoteCount: 10, 
+            answerUsername: 'Gavin Belson', 
             answerContent: 'Why are you telling Redux is faster? It’s obviously wrong.',
             onUpVoteClick: action('onUpVoteClick'),
           },
           {
-            UpVoteCount: 10,
-            answerUsername: 'Gavin Belson',
+            UpVoteCount: 10, 
+            answerUsername: 'Gavin Belson', 
             answerContent: 'Why are you telling Redux is faster? It’s obviously wrong.',
             onUpVoteClick: action('onUpVoteClick'),
           },
@@ -134,27 +132,27 @@ storiesOf('Message', module)
       />
     </div>
   )
-
+  
 storiesOf('ReplyBubble', module)
-  .add('RB start', () =>
+  .add('RB start', () => 
       <div style={{ width: 355 }}>
-        <ReplyBubble
+        <ReplyBubble 
           align="end"
           content="Hi!"
         />
       </div>
   )
-  .add('RB end', () =>
+  .add('RB end', () => 
       <div style={{ width: 355 }}>
-        <ReplyBubble
+        <ReplyBubble 
           align="start"
           content="Hi!"
         />
       </div>
   )
-  .add('RB style & content', () =>
+  .add('RB style & content', () => 
       <div style={{ width: 355 }}>
-        <ReplyBubble
+        <ReplyBubble 
           align="start"
           bubbleStyle="primary"
           userColor="#0f0"
@@ -163,9 +161,9 @@ storiesOf('ReplyBubble', module)
         />
       </div>
   )
-  .add('RB with UpVote', () =>
+  .add('RB with UpVote', () => 
       <div style={{ width: 355 }}>
-        <ReplyBubble
+        <ReplyBubble 
           align="start"
           bubbleStyle="primary"
           userColor="#0f0"
@@ -176,9 +174,9 @@ storiesOf('ReplyBubble', module)
         />
       </div>
   )
-  .add('RB with multiline', () =>
+  .add('RB with multiline', () => 
       <div style={{ width: 355 }}>
-        <ReplyBubble
+        <ReplyBubble 
           align="start"
           bubbleStyle="primary"
           userColor="#0f0"
@@ -190,43 +188,27 @@ storiesOf('ReplyBubble', module)
       </div>
   )
 
-storiesOf('Compose', module)
-  .add('Message', () => (
-    <div style={{ position: 'fixed', bottom: 0, right: 0, left: 0, }}>
-      <ComposeMessage
-        onSubmit={() => {}}
-      />
-    </div>
-  ))
-  .add('Reply', () => (
-    <div style={{ position: 'fixed', bottom: 0, right: 0, left: 0, }}>
-      <ComposeReply
-        onSubmit={() => {}}
-      />
-    </div>
-  ))
 
   storiesOf('header', module)
-    .add('Navbar', () =>
+    .add('Navbar', () => 
       <div style={{ width: 1200, background: '#f2f2f2'}}>
-        <Navbar
+        <Navbar 
           onLoginClick={action('onLoginClick')}
           onRegisterClick={action('onRegisterClick')}
         />
       </div>
     )
 
-  storiesOf('reply bar', module)
-    .add('Answers for', () =>
+  storiesOf('replay bar', module)
+    .add('Answers for', () => 
       <div style={{ width: 355, background: '#fbfbfb'}}>
         <AnswersFor />
       </div>
-    )
-
+  ) 
   storiesOf('Footer', module)
-    .add('navigtion', () =>
+    .add('navigtion', () => 
       <div style={{ width: 1200, background: '#f2f2f2'}}>
-        <Footer
+        <Footer 
           onLogoClick={action('onLogoClick')}
           onTeamClick={action('onTeamClick')}
           onContactClick={action('onContactClick')}
