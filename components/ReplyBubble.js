@@ -20,6 +20,7 @@ const User = styled.div`
   justify-content: flex-end;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 `
 const UserAvatar = styled.div`
   background: #333;
@@ -118,9 +119,10 @@ const ReplyBubble = ({
   content,
   upVoteCount = 0,
   onUpVote = () => {},
+  onUserClick = () => {},
 }) => (
   <Container align={align}>
-    <User align={align}>
+    <User align={align} onClick={onUserClick}>
       <UserAvatar userColor={userColor}>
         <img src={userPicture} />
       </UserAvatar>
@@ -149,6 +151,7 @@ ReplyBubble.propTypes = {
   content: PropTypes.string,
   upVoteCount: PropTypes.number,
   onUpVote: PropTypes.func,
+  onUserClick: PropTypes.func,
 }
 
 export default ReplyBubble

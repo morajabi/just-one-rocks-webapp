@@ -46,14 +46,19 @@ const LoginLink = styled.div`
   padding: 0 ${rem(10)};
   font-weight: bold;
   font-size: ${rem(22)};
+  cursor: pointer;
 `
 const RegisterLink = styled.div`
   padding: 0 ${rem(10)};
   font-weight: bold;
   font-size: ${rem(22)};
+  cursor: pointer;
 `
 
-const Navbar = () => (
+const Navbar = ({
+  onLoginClick = () => {},
+  onRegisterClick =() => {},
+}) => (
   <Container>
     <LogoTitleContainer>
       <LogoContainer>
@@ -62,9 +67,9 @@ const Navbar = () => (
       <Title>Help others to find the better option</Title>
     </LogoTitleContainer>
     <Nav>
-      <LoginLink>log in</LoginLink>
+      <LoginLink onClick={onLoginClick}>log in</LoginLink>
       <Dot size={8} />
-      <RegisterLink>register</RegisterLink>
+      <RegisterLink onClick={onRegisterClick}>register</RegisterLink>
     </Nav>
   </Container>
 )

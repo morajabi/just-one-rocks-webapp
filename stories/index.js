@@ -25,12 +25,34 @@ storiesOf('Button', module)
   .add('with some emoji', () => <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>)
 
 storiesOf('SideBar', module)
-  .add('ShareThis', () => <div style={{ width: 262 }}><ShareThis /></div>)
-  .add('KarmaBox', () => <div style={{ width: 232 }}><KarmaBox /></div>)
+  .add('ShareThis', () => <div style={{ width: 262 }}>
+      <ShareThis
+        onTwitterClick={action('twisiter')}
+        onFacebookClick={action('facsebook')}
+      />
+    </div>
+  )
+  .add('KarmaBox', () =>
+    <div style={{ width: 232 }}>
+      <KarmaBox
+        title="Yes! You have"
+        scoreCount={18}
+        onShareClick={action('ShareLink')}
+      />
+    </div>
+  )
   .add('Rules', () => <div style={{ width: 242 }}><Rules /></div>)
 
 storiesOf('Header', module)
-  .add('FilterBar', () => <div style={{ width: 571 }}><FilterBar /></div>)
+  .add('FilterBar', () =>
+  <div style={{ width: 571 }}>
+    <FilterBar
+      onMostRecentClick={action('a1')}
+      onMostPopularClick={action('a2')}
+      onProsClick={action('a3')}
+      onConsClick={action('a4')}
+    />
+  </div>)
 
 storiesOf('Message', module)
   .add('Message', () =>
@@ -55,6 +77,60 @@ storiesOf('Message', module)
         type="con"
         content="Sublime is fast. I mean a lot faster than Electron-based apps like Visual Studio Code from Microsoft."
         goBackEvent={action('goBack')}
+      />
+    </div>
+  )
+  .add('Message type with buttons', () =>
+    <div style={{ width: 571 }}>
+      <Message
+        styleType="type1"
+        userImage=""
+        userNicName="Gilfoyle St"
+        username="@gilflmx"
+        likeCount={50}
+        type="con"
+        content="Sublime is fast. I mean a lot faster than Electron-based apps like Visual Studio Code from Microsoft."
+        wrongCount="-25"
+        answerCount="30"
+        goBackEvent={action('goBack')}
+        onLikeClick={action('onLikeClick')}
+        onUserClick={action('onUserClick')}
+        onWrongClick={action('onWrongClick')}
+        onAnswerClick={action('onAnswerClick')}
+      />
+    </div>
+  )
+  .add('Message with answers highlight', () =>
+    <div style={{ width: 571 }}>
+      <Message
+        styleType="type1"
+        userImage=""
+        userNicName="Gilfoyle St"
+        username="@gilflmx"
+        likeCount={50}
+        type="con"
+        content="Sublime is fast. I mean a lot faster than Electron-based apps like Visual Studio Code from Microsoft."
+        wrongCount="-25"
+        answerCount="30"
+        goBackEvent={action('goBack')}
+        onLikeClick={action('onLikeClick')}
+        onUserClick={action('onUserClick')}
+        onWrongClick={action('onWrongClick')}
+        onAnswerClick={action('onAnswerClick')}
+        answerHighlightArray={[
+          {
+            UpVoteCount: 10,
+            answerUsername: 'Gavin Belson',
+            answerContent: 'Why are you telling Redux is faster? It’s obviously wrong.',
+            onUpVoteClick: action('onUpVoteClick'),
+          },
+          {
+            UpVoteCount: 10,
+            answerUsername: 'Gavin Belson',
+            answerContent: 'Why are you telling Redux is faster? It’s obviously wrong.',
+            onUpVoteClick: action('onUpVoteClick'),
+          },
+        ]}
       />
     </div>
   )
@@ -96,6 +172,7 @@ storiesOf('ReplyBubble', module)
           content="Hi!"
           upVoteCount={12}
           onUpVote={ action('Upvote')}
+          onUserClick={ action('onUserClick')}
         />
       </div>
   )
@@ -108,6 +185,7 @@ storiesOf('ReplyBubble', module)
           content="Hi h s lkasdjlk asjdkla jskdsaj dlkdkladlklkas asdjaks jkldsaj klasas dashkjdasj dlkajsl kdjasld!"
           upVoteCount={12}
           onUpVote={ action('clicked') }
+          onUserClick={ action('onUserClick')}
         />
       </div>
   )
@@ -131,7 +209,10 @@ storiesOf('Compose', module)
   storiesOf('header', module)
     .add('Navbar', () =>
       <div style={{ width: 1200, background: '#f2f2f2'}}>
-        <Navbar />
+        <Navbar
+          onLoginClick={action('onLoginClick')}
+          onRegisterClick={action('onRegisterClick')}
+        />
       </div>
     )
 
@@ -145,6 +226,11 @@ storiesOf('Compose', module)
   storiesOf('Footer', module)
     .add('navigtion', () =>
       <div style={{ width: 1200, background: '#f2f2f2'}}>
-        <Footer />
+        <Footer
+          onLogoClick={action('onLogoClick')}
+          onTeamClick={action('onTeamClick')}
+          onContactClick={action('onContactClick')}
+          onTermsClick={action('onTermsClick')}
+        />
       </div>
     )
