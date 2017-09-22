@@ -10,6 +10,9 @@ import ShareThis from '../components/ShareThis'
 import KarmaBox from '../components/KarmaBox'
 import Rules from '../components/Rules'
 import ReplyBubble from '../components/ReplyBubble'
+import Navbar from '../components/Navbar'
+import AnswersFor from '../components/AnswersFor'
+import Footer from '../components/Footer'
 import FilterBar from '../components/FilterBar'
 import Message from '../components/Message'
 import ComposeMessage from '../components/compose/ComposeMessage'
@@ -30,7 +33,31 @@ storiesOf('Header', module)
   .add('FilterBar', () => <div style={{ width: 571 }}><FilterBar /></div>)
 
 storiesOf('Message', module)
-  .add('Message', () => <div style={{ width: 571 }}><Message /></div>)
+  .add('Message', () =>
+    <div style={{ width: 571 }}>
+      <Message
+        styleType="type1"
+        userImage=""
+        userNicName="Gilfoyle St"
+        username="@gilflmx"
+        likeCount={50}
+        type="con"
+        content="Sublime is fast. I mean a lot faster than Electron-based apps like Visual Studio Code from Microsoft."
+        wrongCount="-25"
+        answerCount="30"
+      />
+    </div>)
+  .add('Message type 2', () =>
+    <div style={{ width: 355 }}>
+      <Message
+        styleType="type2"
+        userNicName="Gilfoyle St"
+        type="con"
+        content="Sublime is fast. I mean a lot faster than Electron-based apps like Visual Studio Code from Microsoft."
+        goBackEvent={action('goBack')}
+      />
+    </div>
+  )
 
 storiesOf('ReplyBubble', module)
   .add('RB start', () =>
@@ -101,3 +128,23 @@ storiesOf('Compose', module)
     </div>
   ))
 
+  storiesOf('header', module)
+    .add('Navbar', () =>
+      <div style={{ width: 1200, background: '#f2f2f2'}}>
+        <Navbar />
+      </div>
+    )
+
+  storiesOf('reply bar', module)
+    .add('Answers for', () =>
+      <div style={{ width: 355, background: '#fbfbfb'}}>
+        <AnswersFor />
+      </div>
+    )
+
+  storiesOf('Footer', module)
+    .add('navigtion', () =>
+      <div style={{ width: 1200, background: '#f2f2f2'}}>
+        <Footer />
+      </div>
+    )
