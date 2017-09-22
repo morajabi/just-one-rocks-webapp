@@ -50,6 +50,7 @@ const Item = styled.a`
   font-weight: bold;
   font-size: ${rem(12)};
   color: rgba(0, 0, 0, 0.39);
+  cursor: pointer;
 `
 const CopyRight = styled.div`
   padding: 0 ${rem(10)};
@@ -63,18 +64,22 @@ const WaveLiveContainer = styled.div`
   opacity: 0.04;
 `
 
-
-const Footer = () => (
+const Footer = ({
+  onLogoClick=()=>{},
+  onTeamClick=()=>{},
+  onContactClick=()=>{},
+  onTermsClick=()=>{},
+}) => (
   <Container>
     <SectionRight>
-      <LogoContainer>
+      <LogoContainer onClick={onLogoClick}>
         <img src="/static/logo.svg" />
       </LogoContainer>
       <Nav>
         <NavItemContainer>
-          <Item href="#">Team</Item>
-          <Item href="#">Contact</Item>
-          <Item href="#">Terms</Item>
+          <Item onClick={onTeamClick}>Team</Item>
+          <Item onClick={onContactClick}>Contact</Item>
+          <Item onClick={onTermsClick}>Terms</Item>
           <CopyRight>2017 ©️</CopyRight>
         </NavItemContainer>
       </Nav>
