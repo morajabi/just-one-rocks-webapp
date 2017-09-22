@@ -10,10 +10,10 @@ import ShareThis from '../components/ShareThis'
 import KarmaBox from '../components/KarmaBox'
 import Rules from '../components/Rules'
 import ReplyBubble from '../components/ReplyBubble'
-
-
 import FilterBar from '../components/FilterBar'
 import Message from '../components/Message'
+import ComposeMessage from '../components/compose/ComposeMessage'
+import ComposeReply from '../components/compose/ComposeReply'
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />)
 
@@ -28,30 +28,30 @@ storiesOf('SideBar', module)
 
 storiesOf('Header', module)
   .add('FilterBar', () => <div style={{ width: 571 }}><FilterBar /></div>)
-  
+
 storiesOf('Message', module)
   .add('Message', () => <div style={{ width: 571 }}><Message /></div>)
-  
+
 storiesOf('ReplyBubble', module)
-  .add('RB start', () => 
+  .add('RB start', () =>
       <div style={{ width: 355 }}>
-        <ReplyBubble 
+        <ReplyBubble
           align="end"
           content="Hi!"
         />
       </div>
   )
-  .add('RB end', () => 
+  .add('RB end', () =>
       <div style={{ width: 355 }}>
-        <ReplyBubble 
+        <ReplyBubble
           align="start"
           content="Hi!"
         />
       </div>
   )
-  .add('RB style & content', () => 
+  .add('RB style & content', () =>
       <div style={{ width: 355 }}>
-        <ReplyBubble 
+        <ReplyBubble
           align="start"
           bubbleStyle="primary"
           userColor="#0f0"
@@ -60,9 +60,9 @@ storiesOf('ReplyBubble', module)
         />
       </div>
   )
-  .add('RB with UpVote', () => 
+  .add('RB with UpVote', () =>
       <div style={{ width: 355 }}>
-        <ReplyBubble 
+        <ReplyBubble
           align="start"
           bubbleStyle="primary"
           userColor="#0f0"
@@ -72,9 +72,9 @@ storiesOf('ReplyBubble', module)
         />
       </div>
   )
-  .add('RB with multiline', () => 
+  .add('RB with multiline', () =>
       <div style={{ width: 355 }}>
-        <ReplyBubble 
+        <ReplyBubble
           align="start"
           bubbleStyle="primary"
           userColor="#0f0"
@@ -84,3 +84,20 @@ storiesOf('ReplyBubble', module)
         />
       </div>
   )
+
+storiesOf('Compose', module)
+  .add('Message', () => (
+    <div style={{ position: 'fixed', bottom: 0, right: 0, left: 0, }}>
+      <ComposeMessage
+        onSubmit={() => {}}
+      />
+    </div>
+  ))
+  .add('Reply', () => (
+    <div style={{ position: 'fixed', bottom: 0, right: 0, left: 0, }}>
+      <ComposeReply
+        onSubmit={() => {}}
+      />
+    </div>
+  ))
+
