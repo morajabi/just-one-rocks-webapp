@@ -9,7 +9,7 @@ const Countainer = styled.div`
   width: 100%;
   font-size: ${rem(30)};
   color: ${darkGrey};
-  margin-top: ${rem(23)};
+  margin-top: ${rem(15)};
 `
 const Title = styled.h2`
   font-size: ${rem(30)};
@@ -18,7 +18,7 @@ const Title = styled.h2`
   margin: 0;
 `
 const SubTitle = styled.p`
-  margin: ${rem(12)} 0 0;
+  margin: ${rem(8)} 0 0;
   font-size: ${rem(16)};
   color: ${darkGrey};
   font-weight: 400;
@@ -35,8 +35,9 @@ const Item = styled.li`
   position: relative;
   padding-left: ${rem(24)};
   margin: 0;
-  margin-bottom: ${rem(20)};
+  margin-bottom: ${rem(14)};
   font-size: ${rem(16)};
+  list-style: none;
   color: ${darkGrey};
 
   &:before {

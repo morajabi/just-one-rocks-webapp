@@ -3,9 +3,11 @@ import styled from 'styled-components'
 import rem from '../utils/rem'
 import { headerFont } from '../utils/fonts'
 import { WaveLine } from './Icons'
+import Container from './Container'
 
-const Container = styled.div`
+const FooterContainer = styled.div`
   width: 100%;
+  height: ${rem(100)};
   font-family: ${headerFont};
   display: flex;
   justify-content: flex-start;
@@ -71,25 +73,27 @@ const Footer = ({
   onTermsClick=()=>{},
 }) => (
   <Container>
-    <SectionRight>
-      <LogoContainer onClick={onLogoClick}>
-        <img src="/static/logo.svg" />
-      </LogoContainer>
-      <Nav>
-        <NavItemContainer>
-          <Item onClick={onTeamClick}>Team</Item>
-          <Item onClick={onContactClick}>Contact</Item>
-          <Item onClick={onTermsClick}>Terms</Item>
-          <CopyRight>2017 ©️</CopyRight>
-        </NavItemContainer>
-      </Nav>
-    </SectionRight>
+    <FooterContainer>
+      <SectionRight>
+        <LogoContainer onClick={onLogoClick}>
+          <img src="/static/logo.svg" />
+        </LogoContainer>
+        <Nav>
+          <NavItemContainer>
+            <Item onClick={onTeamClick}>Team</Item>
+            <Item onClick={onContactClick}>Contact</Item>
+            <Item onClick={onTermsClick}>Terms</Item>
+            <CopyRight>2017 ©️</CopyRight>
+          </NavItemContainer>
+        </Nav>
+      </SectionRight>
 
-    <WaveLiveContainer>
-      <WaveLine />
-    </WaveLiveContainer>
+      <WaveLiveContainer>
+        <WaveLine />
+      </WaveLiveContainer>
 
-    <SectionLeft />
+      <SectionLeft />
+    </FooterContainer>
   </Container>
 )
 
