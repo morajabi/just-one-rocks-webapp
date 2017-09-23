@@ -5,9 +5,8 @@ import { headerFont } from '../utils/fonts'
 
 const Container = styled.div`
   font-family: ${headerFont};
-  background: rgba(0, 0, 0, 0.02);
   overflow: hidden;
-  padding-bottom: ${rem(10)};
+  border-bottom: 1px solid rgba(0, 0, 0, 0.13);
 `
 const Title = styled.span`
   font-weight: 700;
@@ -15,6 +14,7 @@ const Title = styled.span`
 `
 const ScoreContaner = styled.div`
   display: flex;
+  margin-bottom: ${rem(27)};
 `
 const Score = styled.div`
   flex: 0 1 auto;
@@ -51,6 +51,8 @@ const ShareWork = styled.a`
   font-size: ${rem(11)};
   text-decoration-line: underline;
   color: #76a9ea;
+  display: block;
+  margin-top: ${rem(9)};
 `
 
 const KarmaBox = ({ 

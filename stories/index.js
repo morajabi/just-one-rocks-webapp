@@ -13,6 +13,8 @@ import ReplyBubble from '../components/ReplyBubble'
 import Navbar from '../components/Navbar'
 import AnswersFor from '../components/AnswersFor'
 import Footer from '../components/Footer'
+import SideBar from '../components/SideBar'
+
 import FilterBar from '../components/FilterBar'
 import Message from '../components/Message'
 import ComposeMessage from '../components/compose/ComposeMessage'
@@ -233,4 +235,9 @@ storiesOf('Compose', module)
           onTermsClick={action('onTermsClick')}
         />
       </div>
+    )
+
+  storiesOf('SideBar Complete', module)
+    .add('SideBar', () => 
+        <SideBar />
     )

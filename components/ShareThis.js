@@ -11,6 +11,7 @@ const ShareThisCountainer = styled.div`
   font-family: ${headerFont};
   font-style: normal;
   overflow: hidden;
+  margin-top: ${rem(40)};
 `
 const ShareThisTitle = styled.h2`
   font-size: ${rem(34)};
