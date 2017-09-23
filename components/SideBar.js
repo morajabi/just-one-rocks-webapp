@@ -8,6 +8,8 @@ import ShareThis from './ShareThis'
 const Container = styled.div`
   width: ${rem(254)};
   height: 100%;
+  flex: 0 0 auto;
+  order: 2;
 `
 
 const SideBar = () => (
