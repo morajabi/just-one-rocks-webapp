@@ -9,6 +9,7 @@ const Countainer = styled.div`
   width: 100%;
   font-size: ${rem(30)};
   color: ${darkGrey};
+  margin-top: ${rem(23)};
 `
 const Title = styled.h2`
   font-size: ${rem(30)};
