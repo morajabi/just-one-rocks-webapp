@@ -18,7 +18,7 @@ const resetStyles = `
     color: rgb(46, 68, 78);
     box-sizing: border-box;
     -webkit-font-smoothing: subpixel-antialiased;
-    background: #e5e5e5;
+    background: #f2f5f9;
     @media (max-width: 1000px) {
       font-size: 16px;
     }
