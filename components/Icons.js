@@ -53,6 +53,22 @@ export const DislikeThumb = () => (
   </svg>
 )
 
+export const Picture = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" xmlnsXlink="http://www.w3.org/1999/xlink">
+    <title>picture</title>
+    <path fill="#B5B5B5" d="M17.83 0H2.17C.97 0 0 1 0 2.24v12.52C0 16 .98 17 2.17 17h15.66c1.2 0 2.17-1 2.17-2.24V2.24C20 1 19.02 0 17.83 0zm1.3 8.6l-2.06-2.14c-.35-.35-.87-.35-1.22 0l-4.98 5.1-.02-.02-2.52-2.6c-.33-.33-.9-.33-1.22 0L5 11.14c-.18.2-.18.46 0 .64.17.17.43.17.6 0l2.14-2.2 2.52 2.6.02.02L8.5 14c-.17.18-.17.45 0 .63.1.1.2.13.3.13.1 0 .22-.04.3-.13l7.36-7.54 2.58 2.6.1.02v4.94c0 .74-.6 1.35-1.3 1.35H2.16c-.7 0-1.3-.6-1.3-1.34V2.26c0-.74.6-1.35 1.3-1.35h15.66c.7 0 1.3.6 1.3 1.3v6.4z"/>
+    <path fill="#B5B5B5" transform="translate(3.37 12.08)" d="M.57.13L.13.58c-.17.18-.17.45 0 .63.1.1.2.2.3.2.1 0 .22 0 .3-.1l.44-.5c.18-.2.18-.44 0-.62C1-.02.74-.02.57.13z"/>
+    <path fill="#B5B5B5" transform="translate(2.61 2.684)" d="M2.17 0C.97 0 0 1 0 2.24c0 1.23.98 2.23 2.17 2.23 1.2 0 2.18-1 2.18-2.23S3.37 0 2.17 0zm0 3.58c-.7 0-1.3-.6-1.3-1.34 0-.74.6-1.35 1.3-1.35.72 0 1.3.6 1.3 1.3 0 .7-.58 1.3-1.3 1.3z"/>
+  </svg>
+)
+
+export const SendIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" xmlnsXlink="http://www.w3.org/1999/xlink">
+    <title>send</title>
+    <path fill="#2EA4FF" d="M0 15l17-7.5L0 0v5.8l12 1.7L0 9.2V15z"/>
+  </svg>
+)
+
 export const ArrowLeft = () => (
   <svg width="11" height="10" viewBox="0 0 11 10" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
     <title>ArrowLeft</title>
