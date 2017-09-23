@@ -29,7 +29,7 @@ const resetStyles = `
     src: local('Avenir Next'), local('Avenir-Next-Thin'), url(/static/fonts/avenir-next-thin.woff) format('woff');
     unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
   }
- 
+
   @font-face {
     font-family: 'Avenir Next';
     font-style: normal;
@@ -37,7 +37,7 @@ const resetStyles = `
     src: local('Avenir Next'), local('Avenir-Next-Regular'), url(/static/fonts/avenir-next-regular.woff) format('woff');
     unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
   }
- 
+
   @font-face {
     font-family: 'Avenir Next';
     font-style: normal;
@@ -72,11 +72,9 @@ export default class MyDocument extends Document {
 
           <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-
           <meta name="theme-color" content="#FEA600" />
           <meta name="author" content="morajabi" />
 
-          <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700" rel="stylesheet" />
           <link href="https://fonts.googleapis.com/css?family=Assistant:400,600,800" rel="stylesheet" />
           <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
           <style dangerouslySetInnerHTML={{ __html: resetStyles }} />
