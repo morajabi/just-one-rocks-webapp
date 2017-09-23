@@ -36,7 +36,7 @@ const Messages = styled.div`
   flex: 0 1 100%;
 `
 const ReplyBar = styled.div`
-  width: ${rem(262)};
+  width: ${rem(336)};
   background: #95a5a6;
   flex: 0 0 auto;
 `
