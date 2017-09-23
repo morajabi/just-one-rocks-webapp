@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import rem from '../utils/rem'
 import { headerFont } from '../utils/fonts'
 import { darkGrey } from '../utils/colors'
-
-import Dot from './Dot'
+import { resetButton } from '../utils/reset'
 
 const Container = styled.div`
   display: flex;
@@ -19,22 +18,23 @@ const LogoTitleContainer = styled.div`
 `
 const LogoContainer = styled.div`
   width: ${rem(180)};
-  height: ${rem(95)};
+  height: ${rem(90)};
   background: url(/static/bgLogo.svg);
-  background-size: 180px 95px;
+  background-size: 180px 90px;
   text-align: cetner;
 `
 const Logo = styled.img`
-  margin-top: ${rem(11)};
+  margin-top: ${rem(15)};
   margin-left: ${rem(40)};
 `
 const Title = styled.p`
-  margin: 0 ${rem(20)} 0 0;
+  margin: 0 0 0 ${rem(20)};
   padding-top: ${rem(32)};
   line-height: ${rem(33)};
-  font-size: ${rem(22)};
-  font-weight: 600;
+  font-size: ${rem(20)};
+  font-weight: 400;
   color: ${darkGrey};
+  letter-spacing: ${rem(0.5)};
 `
 const Nav = styled.nav`
   display: flex;
@@ -42,36 +42,42 @@ const Nav = styled.nav`
   align-items: center;
   color: ${darkGrey};
 `
-const LoginLink = styled.div`
-  padding: 0 ${rem(10)};
-  font-weight: bold;
-  font-size: ${rem(22)};
+
+const JoinLink = styled.button`
+  ${resetButton}
+
+  padding: ${rem(3)} ${rem(12)};
+  font-weight: 600;
+  font-size: ${rem(20)};
   cursor: pointer;
-`
-const RegisterLink = styled.div`
-  padding: 0 ${rem(10)};
-  font-weight: bold;
-  font-size: ${rem(22)};
-  cursor: pointer;
+  background: #eee;
+  border-radius: 3px;
+
+  &:hover,
+  &:focus {
+    background: #ddd;
+  }
+
+  &:focus,
+  &:active {
+    color: blue;
+  }
 `
 
 const Navbar = ({
-  onLoginClick = () => {},
-  onRegisterClick =() => {},
+  onJoinClick = () => {},
 }) => (
   <Container>
     <LogoTitleContainer>
       <LogoContainer>
         <Logo src="/static/logo.svg" />
       </LogoContainer>
-      <Title>Help others to find the better option</Title>
+      <Title>Discuss, reply, give reasons why one is better</Title>
     </LogoTitleContainer>
     <Nav>
-      <LoginLink onClick={onLoginClick}>log in</LoginLink>
-      <Dot size={8} />
-      <RegisterLink onClick={onRegisterClick}>register</RegisterLink>
+      <JoinLink onClick={onJoinClick}>Join with Twitter or Facebook!</JoinLink>
     </Nav>
   </Container>
 )
 
-export default Navbar 
+export default Navbar

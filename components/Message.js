@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import rem from '../utils/rem'
 import { darkGrey, grey } from '../utils/colors'
 import { bodyFont, headerFont } from '../utils/fonts'
-import { ButtonReset } from '../utils/reset'
+import { resetButton } from '../utils/reset'
 import Dot from './Dot'
 import { ThumbUp1, DislikeThumb, ArrowRight, ArrowLeft, ArrowUp } from './Icons'
 
@@ -90,14 +90,14 @@ const Feedback = styled.div`
   color: ${grey};
 `
 const Wrong = styled.button`
-  ${ButtonReset}
+  ${resetButton}
   padding: ${rem(5)} 0;
   display: inline;
   margin-right: ${rem(11)};
   cursor: pointer;
 `
 const Answer = styled.button`
-  ${ButtonReset}
+  ${resetButton}
   padding: ${rem(5)} 0;
   display: inline;
   margin-left: 10px;
