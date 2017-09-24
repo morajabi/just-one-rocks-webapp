@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   height: ${rem(144)};
   background: #fff;
 `
-const Compairbox = styled.div`
+const CompareBox = styled.div`
   width: 100%;
   height: ${rem(124)};
   display: flex;
@@ -25,7 +25,7 @@ const Side = styled.div`
   align-items: center;
   justify-content: center;
 `
-const CompairContent = styled.div`
+const CompareContent = styled.div`
   flex: 0 1 100%;
   display: flex;
   align-items: center;
@@ -41,7 +41,7 @@ const BetweenText = styled.div`
   color: #f90;
   font-weight: 700;
 `
-const CompairboxProgress = styled.div`
+const CompareBoxProgress = styled.div`
   width: 100%;
   height: ${rem(24)};
   background: #636cd5;
@@ -64,23 +64,23 @@ const SideProgress = styled.div`
 
 const PageHeader = () => (
   <Wrapper>
-    <Compairbox>
+    <CompareBox>
       <Side>
         <img src="/static/vscode.png" />
       </Side>
-      <CompairContent>
-        <SideTitle>CompairContent</SideTitle>
+      <CompareContent>
+        <SideTitle>CompareContent</SideTitle>
         <BetweenText>or</BetweenText>
-        <SideTitle>CompairContent</SideTitle>
-      </CompairContent>
+        <SideTitle>CompareContent</SideTitle>
+      </CompareContent>
       <Side color="#4b4b4b">
         <img src="/static/vscode.png" />
       </Side>
-    </Compairbox>
-    <CompairboxProgress>
+    </CompareBox>
+    <CompareBoxProgress>
       <SideProgress width="59" color="#636cd5"> 59% members</SideProgress>
       <SideProgress width="41" color="#4b4b4b"> 41% invite friends to take it higher!</SideProgress>
-    </CompairboxProgress>
+    </CompareBoxProgress>
   </Wrapper>
 )
 
