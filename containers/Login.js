@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import { PureComponent } from 'react'
 import Auth0Lock from 'auth0-lock'
 import { gql, graphql, withApollo, compose } from 'react-apollo'
 
@@ -25,24 +25,41 @@ class Login extends PureComponent {
   }
 
   render() {
+    const { children } = this.props
+
+    // Pass children props to the children function
+    return typeof children === 'function' ?
+      children(this.getChildrenProps()) :
+      null
+  }
+
+  /////// Prop Getters ////////
+
+  getChildrenProps = () => {
     const { user: { user } } = this.props
 
-    if (user) {
-      return (
-        <div>
-          {user.picture && <div><img src={user.picture} /></div>}
-          Welcome, {user.displayName}!
-          <div><button onClick={this.logout}>Logout?</button></div>
-        </div>
-      )
+    return {
+      user,
+      getLoginButtonProps: this.getLoginButtonProps,
+      getLogoutButtonProps: this.getLogoutButtonProps,
     }
-
-    return (
-      <button onClick={this.clicked}>
-        Join with Twitter or Facebook
-      </button>
-    )
   }
+
+  getLoginButtonProps = () => {
+    return {
+      onClick: this.clicked,
+      'aria-label': 'login',
+    }
+  }
+
+  getLogoutButtonProps = () => {
+    return {
+      onClick: this.logout,
+      'aria-label': 'logout',
+    }
+  }
+
+  /////// //////////// ////////
 
   clicked = () => {
     this.lock.show()

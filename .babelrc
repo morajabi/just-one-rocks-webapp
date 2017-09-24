@@ -3,7 +3,8 @@
     "babel-plugin-polished",
     ["module-resolver", {
       "alias": {
-        "components": "./components"
+        "components": "./components",
+        "containers": "./containers"
       }
     }]
   ],
