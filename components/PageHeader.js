@@ -44,10 +44,10 @@ const BetweenText = styled.div`
 const CompareBoxProgress = styled.div`
   width: 100%;
   height: ${rem(24)};
-  background: #636cd5;
   display: flex;
   align-items: stretch;
   justify-content: space-between;
+  background: #636cd5;
 `
 const SideProgress = styled.div`
   width: ${p => p.width || '50'}%;
@@ -60,6 +60,9 @@ const SideProgress = styled.div`
   &:nth-child(1) {
     text-align: right;
   }
+`
+const Percent = styled.span`
+  font-weight: 600;
 `
 
 const PageHeader = () => (
@@ -78,8 +81,8 @@ const PageHeader = () => (
       </Side>
     </CompareBox>
     <CompareBoxProgress>
-      <SideProgress width="59" color="#636cd5"> 59% members</SideProgress>
-      <SideProgress width="41" color="#4b4b4b"> 41% invite friends to take it higher!</SideProgress>
+      <SideProgress width="59" color="#636cd5"> <Percent>59%</Percent> members</SideProgress>
+      <SideProgress width="41" color="#4b4b4b"> <Percent>41%</Percent> invite friends to take it higher!</SideProgress>
     </CompareBoxProgress>
   </Wrapper>
 )
