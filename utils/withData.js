@@ -39,6 +39,7 @@ export default ComposedComponent => {
             </ApolloProvider>
           )
         } catch (error) {
+          console.log('[withData getDataFromTree] error', error)
           // Prevent Apollo Client GraphQL errors from crashing SSR.
           // Handle them in components via the data.error prop:
           // http://dev.apollodata.com/react/api-queries.html#graphql-query-data-error
@@ -49,6 +50,7 @@ export default ComposedComponent => {
 
         // Extract query data from the Apollo store
         const state = apollo.getInitialState()
+        console.log('apollo state', state)
 
         serverState = {
           apollo: {
