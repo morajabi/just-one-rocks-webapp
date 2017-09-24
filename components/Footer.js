@@ -5,7 +5,7 @@ import { headerFont } from '../utils/fonts'
 import { WaveLine } from './Icons'
 import Container from './Container'
 
-const FooterContainer = styled.div`
+const FooterContainer = styled.footer`
   width: 100%;
   height: ${rem(100)};
   font-family: ${headerFont};

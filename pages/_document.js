@@ -50,11 +50,9 @@ export default class MyDocument extends Document {
 
           <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-
           <meta name="theme-color" content="#FEA600" />
           <meta name="author" content="morajabi" />
 
-          <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700" rel="stylesheet" />
           <link href="https://fonts.googleapis.com/css?family=Assistant:400,600,800" rel="stylesheet" />
           <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
           <style dangerouslySetInnerHTML={{ __html: resetStyles }} />

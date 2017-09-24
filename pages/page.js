@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 
-
 import rem from '../utils/rem'
+import withData from '../utils/withData'
 import Header from '../components/Header'
 import SideBar from '../components/SideBar'
 import Container from '../components/Container'
 import Footer from '../components/Footer'
 
-const Main = styled.div`
+const Main = styled.main`
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -18,7 +18,7 @@ const MainConatiner = styled.div`
   order: 1;
   margin-right: ${rem(29)};
 `
-const CompairBar = styled.div`
+const CompareBar = styled.div`
   width: 100%;
   background: #fff;
   height: 144px;
@@ -41,27 +41,38 @@ const ReplyBar = styled.div`
   flex: 0 0 auto;
 `
 
-const Page = () => (
-  <div>
-    <Header />
-    <Container>
-      <Main>
-        <SideBar />
-        <MainConatiner>
-          <CompairBar>
-            CompairBar
-          </CompairBar>
+class Page extends Component {
+  render() {
+    const { url: { query: { slug }}} = this.props
 
-          <MessagesContainer>
-            <Messages>Messages</Messages>
-            <ReplyBar>ReplyBar</ReplyBar>
-          </MessagesContainer>
-          
-        </MainConatiner>
-      </Main>
-    </Container>
-    <Footer />
-  </div>
-)
+    console.log('[Page] slug:', slug)
 
-export default Page
+    return (
+      <div>
+        <Header />
+        <Container>
+          <Main>
+            <SideBar />
+
+            <MainConatiner>
+              <CompareBar>
+                CompareBar
+              </CompareBar>
+
+              <MessagesContainer>
+                <Messages>Messages</Messages>
+                <ReplyBar>ReplyBar</ReplyBar>
+              </MessagesContainer>
+            </MainConatiner>
+
+          </Main>
+        </Container>
+
+        <Footer />
+      </div>
+    )
+  }
+}
+
+export default withData(Page)
+

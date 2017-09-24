@@ -4,6 +4,7 @@ import rem from '../utils/rem'
 import { headerFont } from '../utils/fonts'
 import { darkGrey } from '../utils/colors'
 import { resetButton } from '../utils/reset'
+import Login from 'containers/Login'
 
 const Container = styled.div`
   display: flex;
@@ -31,7 +32,7 @@ const Title = styled.p`
   margin: 0 0 0 ${rem(20)};
   padding-top: ${rem(32)};
   line-height: ${rem(33)};
-  font-size: ${rem(20)};
+  font-size: ${rem(18)};
   font-weight: 400;
   color: ${darkGrey};
   letter-spacing: ${rem(0.5)};
@@ -43,19 +44,19 @@ const Nav = styled.nav`
   color: ${darkGrey};
 `
 
-const JoinLink = styled.button`
+const NavButton = styled.button`
   ${resetButton}
 
   padding: ${rem(3)} ${rem(12)};
   font-weight: 600;
-  font-size: ${rem(20)};
+  font-size: ${rem(18)};
   cursor: pointer;
-  background: #eee;
+  background: rgba(0, 0, 0, 0.04);
   border-radius: 3px;
 
   &:hover,
   &:focus {
-    background: #ddd;
+    background: rgba(0, 0, 0, 0.09);
   }
 
   &:focus,
@@ -63,10 +64,57 @@ const JoinLink = styled.button`
     color: blue;
   }
 `
+const ProfilePic = styled.div`
+  width: ${rem(40)};
+  height: ${rem(40)};
+  margin-left: ${rem(15)};
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
 
-const Navbar = ({
-  onJoinClick = () => {},
-}) => (
+  img {
+    display: inline-block;
+    width: ${rem(40)};
+    height: ${rem(40)};
+  }
+`
+
+const Auth = () => (
+  <Login>
+    {({
+      user,
+      getLoginButtonProps,
+      getLogoutButtonProps,
+    }) => {
+
+      if (user) {
+        return (
+          <Nav>
+            <NavButton {...getLogoutButtonProps()}>
+              Logout
+            </NavButton>
+            <ProfilePic>
+              <img
+                alt={user.displayName}
+                src={user.picture}
+              />
+            </ProfilePic>
+          </Nav>
+        )
+      }
+
+      return (
+        <Nav>
+          <NavButton {...getLoginButtonProps()}>
+            Join with Twitter or Facebook!
+          </NavButton>
+        </Nav>
+      )
+    }}
+  </Login>
+)
+
+const Navbar = () => (
   <Container>
     <LogoTitleContainer>
       <LogoContainer>
@@ -74,9 +122,8 @@ const Navbar = ({
       </LogoContainer>
       <Title>Discuss, reply, give reasons why one is better</Title>
     </LogoTitleContainer>
-    <Nav>
-      <JoinLink onClick={onJoinClick}>Join with Twitter or Facebook!</JoinLink>
-    </Nav>
+
+    <Auth />
   </Container>
 )
 
