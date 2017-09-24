@@ -14,7 +14,7 @@ const Title = styled.span`
 `
 const ScoreContaner = styled.div`
   display: flex;
-  margin-bottom: ${rem(27)};
+  margin-bottom: ${rem(23)};
 `
 const Score = styled.div`
   flex: 0 1 auto;
@@ -24,10 +24,10 @@ const Share = styled.div`
   flex: 0 1 100%;
   margin-left: ${rem(15)};
   overflow: hidden;
-  margin-top: 13px;
+  margin-top: 2px;
 `
 const Karmas = styled.span`
-  font-size: ${rem(46)};
+  font-size: ${rem(40)};
   letter-spacing: 1.8px;
   color: #19abf9;
   display: block;
@@ -39,7 +39,7 @@ const KarmasText = styled.span`
   font-weight: 700;
   display: block;
   padding-left: ${rem(3)};
-  line-height: 1.91;
+  line-height: 1.51;
 `
 const Help = styled.p`
   padding: 0;

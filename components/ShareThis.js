@@ -11,14 +11,14 @@ const ShareThisCountainer = styled.div`
   font-family: ${headerFont};
   font-style: normal;
   overflow: hidden;
-  margin-top: ${rem(40)};
+  margin-top: ${rem(20)};
 `
 const ShareThisTitle = styled.h2`
   font-size: ${rem(34)};
   font-style: bold;
   font-weight: 800;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 15px;
   margin-bottom: 0;
   display: block;
   color: ${darkGrey};
@@ -40,7 +40,7 @@ const ShareTitle = styled.span`
   letter-spacing: 0.72px;
   color: #a9a9a9;
   text-align: center;
-  margin-top: 24px;
+  margin-top: 20px;
   text-transform: uppercase;
 `
 const SocialContainer = styled.div`
