@@ -19,6 +19,7 @@ import FilterBar from '../components/FilterBar'
 import Message from '../components/Message'
 import ComposeMessage from '../components/compose/ComposeMessage'
 import ComposeReply from '../components/compose/ComposeReply'
+import PageHeader from '../components/PageHeader'
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />)
 
@@ -240,4 +241,11 @@ storiesOf('Compose', module)
   storiesOf('SideBar Complete', module)
     .add('SideBar', () => 
         <SideBar />
+    )
+
+  storiesOf('PageHeader ', module)
+    .add('PageHeader', () => 
+    <div style={{ width: 1200, background: '#636CD5' }}>
+      <PageHeader />
+    </div>  
     )
