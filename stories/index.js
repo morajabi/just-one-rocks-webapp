@@ -137,6 +137,42 @@ storiesOf('Message', module)
       />
     </div>
   )
+  .add('Message Liked', () =>
+    <div style={{ width: 571 }}>
+      <Message
+        styleType="type1"
+        userImage=""
+        userNicName="Gilfoyle St"
+        username="@gilflmx"
+        likeCount={50}
+        type="con"
+        content="Sublime is fast. I mean a lot faster than Electron-based apps like Visual Studio Code from Microsoft."
+        wrongCount="-25"
+        answerCount="30"
+        goBackEvent={action('goBack')}
+        onLikeClick={action('onLikeClick')}
+        onUserClick={action('onUserClick')}
+        onWrongClick={action('onWrongClick')}
+        onAnswerClick={action('onAnswerClick')}
+        isLiked={true}
+        isWrongActive={true}
+        answerHighlightArray={[
+          {
+            UpVoteCount: 10,
+            answerUsername: 'Gavin Belson',
+            answerContent: 'Why are you telling Redux is faster? It’s obviously wrong.',
+            onUpVoteClick: action('onUpVoteClick'),
+          },
+          {
+            UpVoteCount: 10,
+            answerUsername: 'Gavin Belson',
+            answerContent: 'Why are you telling Redux is faster? It’s obviously wrong.',
+            onUpVoteClick: action('onUpVoteClick'),
+          },
+        ]}
+      />
+    </div>
+  )
 
 storiesOf('ReplyBubble', module)
   .add('RB start', () =>
