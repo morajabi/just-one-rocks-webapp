@@ -1,16 +1,18 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import rem from '../utils/rem'
 import { darkGrey, grey } from '../utils/colors'
+import darken from 'polished/lib/color/darken'
 import { bodyFont, headerFont } from '../utils/fonts'
 import { resetButton } from '../utils/reset'
 import Dot from './Dot'
-import { ThumbUp1, DislikeThumb, ArrowRight, ArrowLeft, ArrowUp } from './Icons'
+import { ThumbUp1, DislikeThumb, ArrowRight, ArrowLeft, ArrowUp, ThumbUpSelected } from './Icons'
 
 const Container = styled.div`
   font-family: ${headerFont};
   display: flex;
   font-size: ${rem(20)};
+  padding-right: 29px;
 `
 const UserInfo = styled.div`
   flex: 0 1 auto;
@@ -18,7 +20,7 @@ const UserInfo = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
-  padding: ${rem(6)} ${rem(10)};
+  padding: ${rem(10)} ${rem(10)} 0 ${rem(18)};
 `
 const MessageContent = styled.div`
   flex: 0 1 100%;
@@ -30,12 +32,31 @@ const UserAvatar = styled.div`
   height: ${rem(32)};
   border: 3px solid #636cd5;
   border-radius: ${rem(22)};
+  line-height: 1;
 `
 const Like = styled.div`
   width: ${rem(22)};
   height: ${rem(24)};
   margin-top: ${rem(10)};
   cursor: pointer;
+
+  ${p => p.isLiked ? css`
+    &:hover {
+      color: ${darken(0.1,'#3db3fe')};
+
+      path {
+        fill: ${darken(0.1,'#3db3fe')};
+      }
+    }
+  ` : css` 
+    &:hover {
+      color: #555;
+
+      path {
+        fill: #555;
+      }
+    }
+  `}
 `
 const LikeCount = styled.div`
   width: 100%;
@@ -95,6 +116,18 @@ const Wrong = styled.button`
   display: inline;
   margin-right: ${rem(11)};
   cursor: pointer;
+  color: #bdbdbd;
+  ${p => p.isWrongActive && css`
+    color: #e74c3c;
+  `}
+
+  &:hover {
+    color: #95a5a6;
+
+    path {
+      fill: #95a5a6;
+    }
+  }
 `
 const Answer = styled.button`
   ${resetButton}
@@ -102,6 +135,18 @@ const Answer = styled.button`
   display: inline;
   margin-left: 10px;
   cursor: pointer;
+
+  ${p => p.wrongStatus && css`
+    color: #e74c3c;
+  `}
+
+  &:hover {
+    color: #95a5a6;
+
+    path {
+      fill: #95a5a6;
+    }
+  }
 `
 const SvgIcon = styled.div`
   padding-top: ${rem(5)};
@@ -113,7 +158,6 @@ const WrongText = styled.div`
   display: inline;
   margin-right: ${rem(4)};
   font-weight: 700;
-  color: #bdbdbd;
 `
 const AnswerText = styled.div`
   padding-top: ${rem(5)};
@@ -157,6 +201,10 @@ const UpVoteCount = styled.div`
 const ArrowUpIcon = styled.div`
   text-align: center;
   display: inline-block;
+
+  svg {
+    vertical-align: super;
+  }
 `
 const AnswerItemContainer = styled.div`
   display: flex;
@@ -186,6 +234,17 @@ const JoinContainer = styled.div`
   display: flex;
   align-items: center;
   height: ${rem(18)};
+  cursor: pointer;
+
+  &:hover {
+    div {
+      color: #95a5a6;
+    }
+
+    path {
+      fill: #95a5a6;
+    }
+  }
 `
 const JoinButton = styled.div`
   margin: 0 auto;
@@ -202,7 +261,9 @@ const JoinIcon = styled.div`
   transform: rotate(-180deg);
   display: inline-block;
   padding-right: ${rem(5)};
+  line-height: 1;
 `
+
 
 const Message = (props) => {
   const {
@@ -220,7 +281,9 @@ const Message = (props) => {
     onUserClick = () => {},
     onWrongClick = () => {},
     onAnswerClick = () => {},
-    answerHighlightArray=[]
+    answerHighlightArray=[],
+    isLiked = false,
+    isWrongActive = false,
   } = props
 
   return (
@@ -231,8 +294,11 @@ const Message = (props) => {
         </UserAvatar>
         {
           styleType == 'type1' &&
-          <Like onClick={onLikeClick}>
-            <ThumbUp1 />
+          <Like onClick={onLikeClick} isLiked={isLiked}>
+            { isLiked ?
+              <ThumbUpSelected /> :
+              <ThumbUp1 />
+            }
             <LikeCount>{likeCount}</LikeCount>
           </Like>
         }
@@ -258,7 +324,7 @@ const Message = (props) => {
             styleType == 'type1' ?
 
             <Feedback>
-              <Wrong onClick={onWrongClick}>
+              <Wrong onClick={onWrongClick} isWrongActive={isWrongActive}>
                 <SvgIcon>
                   <DislikeThumb />
                 </SvgIcon>
