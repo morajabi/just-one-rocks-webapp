@@ -180,7 +180,7 @@ const BottomTextBig = styled.div`
     font-size: ${rem(25)};
   `)}
 `
-const BottomText = styled.div`
+const BottomTextSmall = styled.div`
   font-weight: bold;
   font-size: ${rem(33)};
   color: #757575;
@@ -228,7 +228,7 @@ const Index = () => (
           </VsPagesContaier>
           <BottomText>
             <BottomTextBig>It’s just the begining...</BottomTextBig>
-            <BottomText>Have fun and join the community!</BottomText>
+            <BottomTextSmall>Have fun and join the community!</BottomTextSmall>
           </BottomText>
         </Container>
       </Content>
