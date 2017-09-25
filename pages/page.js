@@ -5,6 +5,7 @@ import rem from '../utils/rem'
 import withData from '../utils/withData'
 import Header from '../components/Header'
 import PageHeaderContainer from 'containers/PageHeaderContainer'
+import MessagesBox from '../components/MessagesBox'
 import SideBar from '../components/SideBar'
 import Container from '../components/Container'
 import Footer from '../components/Footer'
@@ -26,16 +27,18 @@ const MessagesContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
-  background: #000;
-`
-const Messages = styled.div`
-  background: #7f8c8d;
-  flex: 0 1 100%;
+  background: #eee;
 `
 const ReplyBar = styled.div`
-  width: ${rem(336)};
-  background: #95a5a6;
   flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #eee;
+  font-weight: bold;
+  width: ${rem(336)};
+  border-left: ${rem(1)} solid #efefef;
+  background: #fff;
 `
 
 class Page extends Component {
@@ -55,7 +58,7 @@ class Page extends Component {
               <PageHeaderContainer slug={slug} />
 
               <MessagesContainer>
-                <Messages>Messages</Messages>
+                <MessagesBox slug={slug} />
                 <ReplyBar>ReplyBar</ReplyBar>
               </MessagesContainer>
             </MainConatiner>
