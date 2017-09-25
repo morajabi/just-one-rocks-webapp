@@ -83,10 +83,10 @@ const Username = styled.a`
   text-decoration: none;
 `
 const MessageTextContainer = styled.p`
-  font-size: ${p => p.styleType == 'type1' ? rem(14) : rem(13)};
+  font-size: ${p => p.styleType == 'normal' ? rem(14) : rem(13)};
   line-height: ${rem(20)};
   color: ${darkGrey};
-  margin-top: ${p => p.styleType == 'type1' ? rem(10) : rem(2)};
+  margin-top: ${p => p.styleType == 'normal' ? rem(10) : rem(2)};
 `
 const MessageText = styled.span`
   color: ${darkGrey};
@@ -94,7 +94,7 @@ const MessageText = styled.span`
 const Kind = styled.p`
   margin: 0;
   font-family: ${headerFont};
-  font-size: ${p => p.styleType == 'type1' ? rem(17) : rem(16)};
+  font-size: ${p => p.styleType == 'normal' ? rem(17) : rem(16)};
   letter-spacing: -0.26px;
   color: #ff9b2f;
   display: inline-block;
@@ -287,23 +287,29 @@ const JoinIcon = styled.div`
 `
 
 
+ /*
+    styleType
+      compact
+      normal 
+  */
+
 const Message = (props) => {
   const {
-    styleType = 'type1',
+    styleType = 'normal',
     userImage,
-    userNicName,
+    displayName,
     username,
     type,
     content,
     likeCount = 0,
     wrongCount = 0,
     answerCount = 0,
-    goBackEvent = () => {},
+    onGoBackEvent = () => {},
     onLikeClick = () => {},
     onUserClick = () => {},
     onWrongClick = () => {},
     onAnswerClick = () => {},
-    answerHighlightArray=[],
+    answerHighlightArray = [],
     isLiked = false,
     isWrongActive = false,
   } = props
@@ -314,24 +320,20 @@ const Message = (props) => {
         <UserAvatar>
           <img src={userImage} />
         </UserAvatar>
+
         {
-          styleType == 'type1' &&
+          styleType == 'normal' &&
           <Like onClick={onLikeClick} isLiked={isLiked}>
-            { isLiked ?
-              <ThumbUpSelected /> :
-              <ThumbUp1 />
-            }
+            {isLiked ? <ThumbUpSelected /> : <ThumbUp1 />}
             <LikeCount>{likeCount}</LikeCount>
           </Like>
         }
-
       </UserInfo>
 
       <MessageContent>
         <UserData onClick={onUserClick}>
-          <Name href="#">{userNicName}</Name>
-          {
-            styleType == 'type1' &&
+          <Name href="#">{displayName}</Name>
+          {styleType == 'normal' &&
             <Username href="#">{username}</Username>
           }
         </UserData>
@@ -342,9 +344,7 @@ const Message = (props) => {
             <MessageText>{content}</MessageText>
           </MessageTextContainer>
 
-          {
-            styleType == 'type1' ?
-
+          {styleType == 'normal' ?
             <Feedback>
               <Wrong onClick={onWrongClick} isWrongActive={isWrongActive}>
                 <SvgIcon>
@@ -361,17 +361,15 @@ const Message = (props) => {
               </Answer>
             </Feedback> :
 
-            <GoBack onClick={goBackEvent}>
+            <GoBack onClick={onGoBackEvent}>
               <GoBackArrow><ArrowLeft /></GoBackArrow>
               <GoBackText>GO TO MESSAGE</GoBackText>
             </GoBack>
           }
 
-          {
-            styleType == 'type1' &&
+          {styleType == 'normal' &&
             <AnswerHighlight>
-            {
-              answerHighlightArray.map((p, i) => (
+              {answerHighlightArray.map((p, i) => (
                 <AnswerItemContainer key={i}>
                   <UpVote onClick={p.onUpVoteClick}>
                     <ArrowUpIcon>
@@ -384,7 +382,7 @@ const Message = (props) => {
                     <AnswerContent>{p.answerContent}</AnswerContent>
                   </AnswerItem>
                 </AnswerItemContainer>
-            ))}
+              ))}
               <JoinContainer>
                 <JoinButton>
                   JOIN <JoinIcon><ArrowLeft /></JoinIcon>
