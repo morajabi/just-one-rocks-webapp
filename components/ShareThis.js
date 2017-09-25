@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'  
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import rem from '../utils/rem'
@@ -12,14 +12,15 @@ const ShareThisCountainer = styled.div`
   font-style: normal;
   overflow: hidden;
   margin-top: ${rem(20)};
+  padding: ${rem(10)};
 `
 const ShareThisTitle = styled.h2`
   font-size: ${rem(34)};
-  font-style: bold;
-  font-weight: 800;
+  line-height: 1;
+  font-weight: 700;
   text-align: center;
-  margin-top: 15px;
-  margin-bottom: 0;
+  margin-top: ${rem(10)};
+  margin-bottom: ${rem(5)};
   display: block;
   color: ${darkGrey};
 `
@@ -27,20 +28,21 @@ const Subtitle = styled.span`
   width: 100%;
   display: block;
   font-size: ${rem(18)};
+  line-height: 1;
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
   color: #828282;
 `
 
 const ShareTitle = styled.span`
   width: 100%;
   display: block;
-  font-weight: 600;
+  font-weight: 700;
   font-size: ${rem(12)};
   letter-spacing: 0.72px;
   color: #a9a9a9;
   text-align: center;
-  margin-top: 20px;
+  margin-top: ${rem(19)};
   text-transform: uppercase;
 `
 const SocialContainer = styled.div`

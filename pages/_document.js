@@ -53,8 +53,7 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#FEA600" />
           <meta name="author" content="morajabi" />
 
-          <link href="https://fonts.googleapis.com/css?family=Assistant:400,600,800" rel="stylesheet" />
-          <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css?family=Assistant:400,700|Roboto:400,700" rel="stylesheet" />
           <style dangerouslySetInnerHTML={{ __html: resetStyles }} />
 
           {styles}

@@ -17,13 +17,13 @@ const SortContainer = styled.div`
   flex: 0 1 auto;
 `
 const Text = styled.p`
-  font-weight: 600;
+  font-weight: 700;
   font-size: ${rem(14)};
   color: #bdbdbd;
   display: inline-block;
 `
 const FilterTag = styled.span`
-  font-weight: 600;
+  font-weight: 700;
   font-size: ${rem(14)};
   text-align: center;
   border-radius: ${rem(8)};
