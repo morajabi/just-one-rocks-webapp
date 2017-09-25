@@ -117,17 +117,29 @@ const Wrong = styled.button`
   margin-right: ${rem(11)};
   cursor: pointer;
   color: #bdbdbd;
-  ${p => p.isWrongActive && css`
+  ${p => p.isWrongActive ? css`
     color: #e74c3c;
-  `}
-
-  &:hover {
-    color: #95a5a6;
 
     path {
-      fill: #95a5a6;
+      fill: #e74c3c;
     }
-  }
+
+    &:hover {
+      color: ${darken(0.1,'#e74c3c')};
+
+      path {
+        fill: ${darken(0.1,'#e74c3c')};
+      }
+    }
+  ` : css`
+    &:hover {
+      color: #95a5a6;
+
+      path {
+        fill: #95a5a6;
+      }
+    }
+  `}
 `
 const Answer = styled.button`
   ${resetButton}
@@ -135,6 +147,7 @@ const Answer = styled.button`
   display: inline;
   margin-left: 10px;
   cursor: pointer;
+  color: #bdbdbd;
 
   ${p => p.wrongStatus && css`
     color: #e74c3c;
@@ -164,7 +177,6 @@ const AnswerText = styled.div`
   display: inline;
   margin-right: ${rem(4)};
   font-weight: 700;
-  color: #bdbdbd;
 `
 const GoBack = styled.div`
   font-weight: bold;
@@ -183,7 +195,7 @@ const GoBackText = styled.span`
 /* Answers Highlighted */
 const AnswerHighlight = styled.div`
   background: #fafafa;
-  border: ${rem(1)} solid #fafafa;
+  border: ${rem(1)} dashed #eaeaea;
   box-sizing: border-box;
   padding: ${rem(10)};
   margin-top: ${rem(4)};
@@ -192,6 +204,16 @@ const UpVote = styled.div`
   flex: 0 0 auto;
   padding: ${rem(3.5)} ${rem(7)} 0 0;
   font-size: 0;
+  cursor: pointer;
+  color: #838383;
+
+  &:hover {
+    color: #555;
+
+    path {
+      fill: #555;
+    }
+  }
 `
 const UpVoteCount = styled.div`
   display: inline-block;
