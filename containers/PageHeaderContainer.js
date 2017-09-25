@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react'
 import { gql, graphql } from 'react-apollo'
 
-class PageHeader extends PureComponent {
+import PageHeader from 'components/PageHeader'
+
+class PageHeaderContainer extends PureComponent {
   render() {
     const { page, loading, error } = this.props
     console.log(page, loading, error)
     return (
-      <div>Page Header</div>
+      <PageHeader sides={page && page.sides} />
     )
   }
 
@@ -44,4 +46,4 @@ export default graphql(GetPage, {
     loading,
     error,
   })
-})(PageHeader)
+})(PageHeaderContainer)

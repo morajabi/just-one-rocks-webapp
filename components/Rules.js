@@ -18,7 +18,7 @@ const Title = styled.h2`
   margin: 0;
 `
 const SubTitle = styled.p`
-  margin: ${rem(8)} 0 0;
+  margin: ${rem(5)} 0 0;
   font-size: ${rem(16)};
   color: ${darkGrey};
   font-weight: 400;

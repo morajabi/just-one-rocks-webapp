@@ -8,9 +8,11 @@ const Container = styled.div`
   overflow: hidden;
   border-bottom: 1px solid rgba(0, 0, 0, 0.13);
 `
-const Title = styled.span`
+const Title = styled.div`
+  line-height: 1;
   font-weight: 700;
   font-size: 30px;
+  margin-bottom: ${rem(13)};
 `
 const ScoreContaner = styled.div`
   display: flex;
@@ -27,36 +29,39 @@ const Share = styled.div`
   margin-top: 2px;
 `
 const Karmas = styled.span`
-  font-size: ${rem(40)};
-  letter-spacing: 1.8px;
+  font-size: ${rem(45)};
+  letter-spacing: ${rem(1.8)};
+  line-height: 1.1;
   color: #19abf9;
   display: block;
   font-weight: 700;
 `
 const KarmasText = styled.span`
+  margin-top: ${rem(1)};
+  line-height: 1.51;
   font-size: ${rem(15)};
-  color: #19abf9;
   font-weight: 700;
   display: block;
   padding-left: ${rem(3)};
-  line-height: 1.51;
+  color: #19abf9;
 `
 const Help = styled.p`
   padding: 0;
   margin: 0;
-  font-size: ${rem(18)};
+  font-size: ${rem(17)};
+  line-height: 1.4;
   color: #555;
 `
 const ShareWork = styled.a`
-  font-size: ${rem(11)};
-  text-decoration-line: underline;
-  color: #76a9ea;
   display: block;
-  margin-top: ${rem(9)};
+  font-size: ${rem(13)};
+  text-decoration-line: underline;
+  margin-top: ${rem(4)};
+  color: #76a9ea;
 `
 
-const KarmaBox = ({ 
-  title="Yes! You have", 
+const KarmaBox = ({
+  title="Yes! You have",
   scoreCount=18,
   onShareClick=() => {},
 }) => (

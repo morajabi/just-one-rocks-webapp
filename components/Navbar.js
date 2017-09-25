@@ -21,12 +21,14 @@ const LogoContainer = styled.div`
   width: ${rem(180)};
   height: ${rem(90)};
   background: url(/static/bgLogo.svg);
-  background-size: 180px 90px;
-  text-align: cetner;
+  background-size: ${rem(180)} ${rem(90)};
+  text-align: center;
 `
 const Logo = styled.img`
-  margin-top: ${rem(15)};
-  margin-left: ${rem(40)};
+  width: ${rem(115 * 0.9)};
+  height: ${rem(53 * 0.9)};
+  display: inline-block;
+  margin-top: ${rem(16)};
 `
 const Title = styled.p`
   margin: 0 0 0 ${rem(20)};
@@ -48,7 +50,7 @@ const NavButton = styled.button`
   ${resetButton}
 
   padding: ${rem(3)} ${rem(12)};
-  font-weight: 600;
+  font-weight: 700;
   font-size: ${rem(18)};
   cursor: pointer;
   background: rgba(0, 0, 0, 0.04);
@@ -118,7 +120,7 @@ const Navbar = () => (
   <Container>
     <LogoTitleContainer>
       <LogoContainer>
-        <Logo src="/static/logo.svg" />
+        <Logo src="/static/logo.svg?xs" />
       </LogoContainer>
       <Title>Discuss, reply, give reasons why one is better</Title>
     </LogoTitleContainer>
