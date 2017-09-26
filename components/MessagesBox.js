@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import ComposeLogin from 'components/compose/ComposeLogin'
 import Login from 'containers/Login'
 import SendMessage from 'containers/SendMessage'
+import MessageList from 'containers/MessageList'
 
 const Wrapper = styled.div`
   flex: 0 1 100%;
@@ -12,17 +13,20 @@ const Wrapper = styled.div`
 `
 
 const MessagesSpace = styled.div`
-  flex: 0 1 100%;
+  flex: 3;
+  overflow-y: scroll;
 `
 
 const ComposeWrapper = styled.div`
-  flex: 0 0 auto;
+  display: block;
 `
 
 const MessagesBox = ({ slug }) => {
   return (
     <Wrapper>
-      <MessagesSpace />
+      <MessagesSpace>
+        <MessageList slug={slug} />
+      </MessagesSpace>
       <ComposeWrapper>
         <Login>
           {({

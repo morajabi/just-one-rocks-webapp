@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { EditorState, getDefaultKeyBinding } from 'draft-js'
+import { EditorState, getDefaultKeyBinding, ContentState } from 'draft-js'
 
 import rem from '../../utils/rem'
 import Editor, { emptyContentState } from './Editor'
@@ -129,6 +129,16 @@ const WordCounter = styled.div`
   }
 `
 
+const DisabledOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.05);
+`
+
 class ComposeMessage extends Component {
 
   static propTypes = {
@@ -142,6 +152,7 @@ class ComposeMessage extends Component {
   }
 
   render() {
+    const { disabled } = this.props
     const { isFocused, type, editorState } = this.state
     const charCount = 250 - countChars(
       editorState.getCurrentContent().getPlainText()
@@ -151,7 +162,9 @@ class ComposeMessage extends Component {
     return (
       <Wrapper isFocused={isFocused}>
 
-        {(isOffLimit || isFocused) &&
+        {disabled && <DisabledOverlay />}
+
+        {(isOffLimit || isFocused) && !disabled &&
           <MetaWrapper>
             <WordCounter isOffLimit={isOffLimit}>
             {isOffLimit && <span>Uh-uh! It's too much </span>}{charCount}
@@ -181,6 +194,7 @@ class ComposeMessage extends Component {
 
             <EditorArea isFocused={isFocused} isOffLimit={isOffLimit}>
               <Editor
+                disabled={disabled}
                 placeholder="What do you think?"
                 editorKey="compose-message"
                 editorState={this.state.editorState}
@@ -209,7 +223,8 @@ class ComposeMessage extends Component {
     if (command === 'submit') {
       this.props.onSubmit(
         this.state.editorState,
-        this.state.type
+        this.state.type,
+        this.clearEditor,
       )
       return 'handled'
     }
@@ -231,6 +246,14 @@ class ComposeMessage extends Component {
       this.editor.focus()
     }
     this.setState({ type })
+  }
+
+  clearEditor = () => {
+    const editorState = EditorState.push(
+      this.state.editorState,
+      ContentState.createFromText('')
+    )
+    this.setState({ editorState })
   }
 }
 

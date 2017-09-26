@@ -2,6 +2,10 @@ import { gql, graphql } from 'react-apollo'
 
 import { BasicUserFragment } from '../utils/fragments'
 
+export function getDummy() {
+  return `dummy${Math.random()}`
+}
+
 const GetUser = gql`
   query getUser {
     user {

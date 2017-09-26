@@ -5,21 +5,44 @@ import { withUser, withPage } from '../utils/graphql'
 import ComposeMessage from 'components/compose/ComposeMessage'
 
 class SendMessage extends Component {
+  state = {
+    disabled: false
+  }
+
   render() {
+    const { disabled } = this.state
+
     return (
-      <ComposeMessage onSubmit={this.submitted} />
+      <ComposeMessage
+        disabled={disabled}
+        onSubmit={this.submitted}
+      />
     )
   }
 
-  submitted = (editorState, type) => {
+  submitted = (editorState, type, clearEditor) => {
     const { createMessage, user, page } = this.props
     const content = editorState.getCurrentContent().getPlainText()
     // TODO: send raw editor object instead of plain text
 
+    // TODO: Handle errors better
     if (!user.user || !page) {
       console.log('[SendMessage] User or page is missing.')
       return
     }
+
+    if (content.trim() === '') {
+      console.log('[SendMessage] Empty')
+      return
+    }
+
+    if (content.trim().length < 40) {
+      console.log('[SendMessage] Too short')
+      return
+    }
+
+    // Disable user input
+    this.setState({ disabled: true })
 
     createMessage({
       content,
@@ -27,8 +50,15 @@ class SendMessage extends Component {
       sentById: user.user.id,
       type,
     })
-      .then(result => console.log('[SendMessage] message sent:', result))
-      .catch(error => console.log('[SendMessage] sending failed:', error))
+      .then(result => {
+        console.log('[SendMessage] message sent:', result)
+        clearEditor()
+        this.setState({ disabled: false })
+      })
+      .catch(error => {
+        console.log('[SendMessage] sending failed:', error)
+        this.setState({ disabled: false })
+      })
   }
 }
 
