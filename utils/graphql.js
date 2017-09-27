@@ -52,3 +52,26 @@ export const withPage = graphql(GetPage, {
     error,
   })
 })
+
+
+
+const UpdateDummy = gql`
+  mutation updateDummy($messageId: ID!, $dummy: String) {
+    updateMessage(id: $messageId, dummy: $dummy) {
+      id
+    }
+  }
+`
+
+export const withDummy = graphql(UpdateDummy, {
+  name: 'dummy',
+
+  props: ({ dummy }) => ({
+    // Wrap and supply variables
+    updateDummy(variables) {
+      return dummy({
+        variables,
+      })
+    }
+  })
+})

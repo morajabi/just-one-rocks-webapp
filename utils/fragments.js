@@ -13,6 +13,7 @@ fragment PageMessage on Message {
   id
   content
   createdAt
+  dummy
   page {
     id
   }
@@ -32,5 +33,4 @@ fragment PageMessage on Message {
   _usersWrongsMeta {
     count
   }
-  dummy
 }`

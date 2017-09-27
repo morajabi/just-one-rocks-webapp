@@ -2,12 +2,13 @@ import React, { PureComponent } from 'react'
 import { gql, graphql, compose } from 'react-apollo'
 
 import { PageMessageFragment } from '../utils/fragments'
-import { withUser } from '../utils/graphql'
+import { withUser, getDummy } from '../utils/graphql'
 import Message from 'components/Message'
 
 class MessageList extends PureComponent {
-  componentDidMount() {
-    this.props.subscribeToNewMessages()
+  constructor(p) {
+    super(p)
+    this.subscription = null
   }
 
   componentWillReceiveProps(newProps) {
@@ -15,12 +16,9 @@ class MessageList extends PureComponent {
       return
     }
 
-    if (newProps.messages.allMessages !== this.props.messages.allMessages) {
-      // if the feed has changed, we need to unsubscribe before resubscribing
-      this.props.subscribeToNewMessages()
-    } else {
-      // we already have an active subscription with the right params
-      return
+    if (!this.subscription) {
+      this.subscription = this.props.subscribeToNewMessages()
+      console.log('[MessageList] Subscribed to ws server!')
     }
   }
 
@@ -29,6 +27,8 @@ class MessageList extends PureComponent {
       messages: { allMessages = [], loading, error },
       like,
       unlike,
+      wrong,
+      unwrong,
     } = this.props
 
     if (loading) {
@@ -43,11 +43,13 @@ class MessageList extends PureComponent {
 
     const messagesList = allMessages.map((m, i) => {
       const isLiked = m.usersLikes.length === 1
+      const isWrongActive = m.usersWrongs.length === 1
 
       return (
         <Message
           key={i}
           isLiked={isLiked}
+          isWrongActive={isWrongActive}
           styleType="normal"
           userImage=""
           displayName={m.sentBy.displayName}
@@ -58,9 +60,9 @@ class MessageList extends PureComponent {
           wrongCount={m._usersWrongsMeta.count}
           answerCount={0}
           onLikeClick={() => isLiked ? unlike(m.id) : like(m.id)}
-          onUserClick={() => {}}
-          onWrongClick={() => {}}
+          onWrongClick={() => isWrongActive ? unwrong(m.id) : wrong(m.id)}
           onAnswerClick={() => {}}
+          onUserClick={() => {}}
         />
       )
     })
@@ -90,6 +92,9 @@ const LikeMessage = gql`
 
 const UnlikeMessage = gql`
   mutation UnlikeMessage($userId: ID!, $messageId: ID!, $dummy: String) {
+    updateMessage(id: $messageId, dummy: $dummy) {
+      id
+    }
     removeFromMessageLikesByUsers(
       usersLikesUserId: $userId
       likedMessagesMessageId: $messageId
@@ -97,6 +102,41 @@ const UnlikeMessage = gql`
       likedMessagesMessage {
         id
         _usersLikesMeta {
+          count
+        }
+      }
+    }
+  }
+`
+
+const WrongMessage = gql`
+  mutation WrongMessage($userId: ID!, $messageId: ID!, $dummy: String) {
+    addToMessageWrongsByUsers(
+      usersWrongsUserId: $userId
+      wrongedMessagesMessageId: $messageId
+    ) {
+      wrongedMessagesMessage {
+        id
+        _usersWrongsMeta {
+          count
+        }
+      }
+    }
+    updateMessage(id: $messageId, dummy: $dummy) {
+      id
+    }
+  }
+`
+
+const UnwrongMessage = gql`
+  mutation UnwrongMessage($userId: ID!, $messageId: ID!, $dummy: String) {
+    removeFromMessageWrongsByUsers(
+      usersWrongsUserId: $userId
+      wrongedMessagesMessageId: $messageId
+    ) {
+      wrongedMessagesMessage {
+        id
+        _usersWrongsMeta {
           count
         }
       }
@@ -127,13 +167,13 @@ const messagesSubscription = gql`
   subscription messagesSubscription($slug: String!, $userId: ID) {
     Message(filter: { node: { page: { slug: $slug }}}) {
       node {
-        ...PageMessage
         usersLikes(filter: { id: $userId }) {
           id
         }
         usersWrongs(filter: { id: $userId }) {
           id
         }
+        ...PageMessage
       }
     }
   }
@@ -175,19 +215,15 @@ export default compose(
               return prev
             }
 
-            console.log('update query 1...')
-
             const newMessage = subscriptionData.data.Message.node
 
             // Check for duplicates
             if (
               newMessage.id === '' ||
-              prev.allMessages.find(m => m.id === newMessage.id)
+              prev.allMessages.some(m => m.id === newMessage.id)
             ) {
               return prev
             }
-            console.log('update query 2 (end)')
-            console.log('prev allMessages:', prev.allMessages)
 
             return {
               allMessages: [
@@ -216,7 +252,7 @@ export default compose(
           variables: {
             userId: user.user.id,
             messageId,
-            dummy: `dummy${String(Math.random())}`,
+            dummy: getDummy(),
           }
         })
       }
@@ -238,7 +274,51 @@ export default compose(
           variables: {
             userId: user.user.id,
             messageId,
-            dummy: `dummy${String(Math.random())}`,
+            dummy: getDummy(),
+          }
+        })
+      }
+    })
+  }),
+
+
+  // Wrong a message
+  graphql(WrongMessage, {
+    name: 'wrongMessage',
+
+    props: ({ wrongMessage, ownProps: { user }}) => ({
+      // Wrap and supply variables
+      wrong(messageId) {
+        if (!user.user) {
+          return
+        }
+        return wrongMessage({
+          variables: {
+            userId: user.user.id,
+            messageId,
+            dummy: getDummy(),
+          }
+        })
+      }
+    })
+  }),
+
+
+  // Wrong a message
+  graphql(UnwrongMessage, {
+    name: 'unwrongMessage',
+
+    props: ({ unwrongMessage, ownProps: { user }}) => ({
+      // Wrap and supply variables
+      unwrong(messageId) {
+        if (!user.user) {
+          return
+        }
+        return unwrongMessage({
+          variables: {
+            userId: user.user.id,
+            messageId,
+            dummy: getDummy(),
           }
         })
       }

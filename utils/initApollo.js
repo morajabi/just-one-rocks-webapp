@@ -11,7 +11,7 @@ if (!process.browser) {
 }
 
 const SIMPLE_ENDPOINT = 'https://api.graph.cool/simple/v1/just-one-rocks'
-const SUBSCRIPTIONS_ENDPOINT = 'wss://subscriptions.graph.cool/v1/just-one-rocks'
+const SUBSCRIPTIONS_ENDPOINT = 'wss://subscriptions.graph.cool/v1/cj7oso6cs07i70179ccz9zdgj'
 
 let apolloClient = null
 
