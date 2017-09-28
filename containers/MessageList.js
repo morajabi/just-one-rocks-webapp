@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { gql, graphql, compose } from 'react-apollo'
 
 import { PageMessageFragment } from '../utils/fragments'
 import { withUser, getDummy } from '../utils/graphql'
 import Message from 'components/Message'
 
-class MessageList extends PureComponent {
+class MessageList extends Component {
   constructor(p) {
     super(p)
     this.subscription = null
@@ -30,6 +30,7 @@ class MessageList extends PureComponent {
       wrong,
       unwrong,
     } = this.props
+    console.log('[MessageList render] rerendered.')
 
     if (loading) {
       return <div>Loading...</div>
@@ -167,13 +168,13 @@ const messagesSubscription = gql`
   subscription messagesSubscription($slug: String!, $userId: ID) {
     Message(filter: { node: { page: { slug: $slug }}}) {
       node {
+        ...PageMessage
         usersLikes(filter: { id: $userId }) {
           id
         }
         usersWrongs(filter: { id: $userId }) {
           id
         }
-        ...PageMessage
       }
     }
   }
@@ -216,6 +217,7 @@ export default compose(
             }
 
             const newMessage = subscriptionData.data.Message.node
+            console.log('newMessage', newMessage)
 
             // Check for duplicates
             if (
@@ -225,9 +227,11 @@ export default compose(
               return prev
             }
 
+            console.log('[MessageList updateQuery] returning new messages')
+
             return {
               allMessages: [
-                ...prev.allMessages,
+                ...allMessages,
                 { ...newMessage }
               ]
             }
