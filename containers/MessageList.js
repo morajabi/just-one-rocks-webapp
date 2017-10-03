@@ -80,6 +80,9 @@ const LikeMessage = gql`
     ) {
       likedMessagesMessage {
         id
+        usersLikes(filter: { id: $userId }) {
+          id
+        }
         _usersLikesMeta {
           count
         }
@@ -102,6 +105,9 @@ const UnlikeMessage = gql`
     ) {
       likedMessagesMessage {
         id
+        usersLikes(filter: { id: $userId }) {
+          id
+        }
         _usersLikesMeta {
           count
         }
@@ -118,6 +124,9 @@ const WrongMessage = gql`
     ) {
       wrongedMessagesMessage {
         id
+        usersWrongs(filter: { id: $userId }) {
+          id
+        }
         _usersWrongsMeta {
           count
         }
@@ -137,6 +146,9 @@ const UnwrongMessage = gql`
     ) {
       wrongedMessagesMessage {
         id
+        usersWrongs(filter: { id: $userId }) {
+          id
+        }
         _usersWrongsMeta {
           count
         }
@@ -246,7 +258,7 @@ export default compose(
   graphql(LikeMessage, {
     name: 'likeMessage',
 
-    props: ({ likeMessage, ownProps: { user }}) => ({
+    props: ({ likeMessage, ownProps: { user, slug }}) => ({
       // Wrap and supply variables
       like(messageId) {
         if (!user.user) {
@@ -257,7 +269,24 @@ export default compose(
             userId: user.user.id,
             messageId,
             dummy: getDummy(),
-          }
+          },
+
+          update: (store, { data: newData }) => {
+            // Read the data from our cache for this query.
+            const data = store.readQuery({
+              query: GetMessages,
+              variables: {
+                slug,
+                userId: user.user && user.user.id,
+              }
+            })
+            console.log('[MessageList like > update] proxy query data', data)
+            console.log('[MessageList like > update] newData', newData)
+            // Add our comment from the mutation to the end.
+            // data.comments.push(submitComment)
+            // Write our data back to the cache.
+            // store.writeQuery({ query: CommentAppQuery, data })
+          },
         })
       }
     })
