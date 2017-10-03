@@ -243,7 +243,7 @@ export default compose(
 
             return {
               allMessages: [
-                ...allMessages,
+                ...prev.allMessages,
                 { ...newMessage }
               ]
             }
