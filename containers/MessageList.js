@@ -18,8 +18,11 @@ class MessageList extends Component {
 
     if (!this.subscription) {
       this.subscription = this.props.subscribeToNewMessages()
-      console.log('[MessageList] Subscribed to ws server!')
     }
+  }
+
+  componentDidUpdate() {
+    this.props.scrollToBottom(true)
   }
 
   render() {
