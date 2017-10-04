@@ -67,7 +67,7 @@ const Tag = styled.span`
 const FilterBar = props => {
   const {
     sortBy = sortTypes.MOST_RECENT,
-    filterBy = filterTypes.PROS,
+    filterBy,
     onSort = () => {},
     onFilter = () => {},
   } = props
