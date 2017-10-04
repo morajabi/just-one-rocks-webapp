@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 
 import ComposeLogin from 'components/compose/ComposeLogin'
+import FilterBar from 'components/FilterBar'
 import Login from 'containers/Login'
 import SendMessage from 'containers/SendMessage'
 import MessageList from 'containers/MessageList'
@@ -67,6 +68,8 @@ class WithScrollToBottom extends PureComponent {
 const MessagesBox = ({ slug }) => {
   return (
     <Wrapper>
+      <FilterBar />
+
       <WithScrollToBottom>
         {({
           scrollToBottom,
