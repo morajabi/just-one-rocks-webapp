@@ -12,7 +12,8 @@ const Container = styled.div`
   font-family: ${headerFont};
   display: flex;
   font-size: ${rem(20)};
-  padding-right: 29px;
+  padding: ${rem(12)} ${rem(29)} ${rem(18)} 0;
+  border-bottom: 1px solid #eee;
 `
 const UserInfo = styled.div`
   flex: 0 1 auto;
@@ -48,7 +49,7 @@ const Like = styled.div`
         fill: ${darken(0.1,'#3db3fe')};
       }
     }
-  ` : css` 
+  ` : css`
     &:hover {
       color: #555;
 
@@ -74,7 +75,7 @@ const Name = styled.a`
   font-weight: 700;
   font-size: ${rem(14)};
   color: ${darkGrey};
-  margin-right: ${rem(14)};
+  margin-right: ${rem(9)};
   text-decoration: none;
 `
 const Username = styled.a`
@@ -82,7 +83,7 @@ const Username = styled.a`
   color: ${grey};
   text-decoration: none;
 `
-const MessageTextContainer = styled.p`
+const MessageTextContainer = styled.div`
   font-size: ${p => p.styleType == 'normal' ? rem(14) : rem(13)};
   line-height: ${rem(20)};
   color: ${darkGrey};
@@ -90,13 +91,15 @@ const MessageTextContainer = styled.p`
 `
 const MessageText = styled.span`
   color: ${darkGrey};
+  font-size: ${rem(15)};
+  line-height: 1.25;
 `
 const Kind = styled.p`
   margin: 0;
   font-family: ${headerFont};
   font-size: ${p => p.styleType == 'normal' ? rem(17) : rem(16)};
   letter-spacing: -0.26px;
-  color: #ff9b2f;
+  color: ${p => p.type === 'Con' ? '#ff9b2f' : 'lightGreen'};
   display: inline-block;
   font-weight: 700;
   margin-right: ${rem(5)};
@@ -104,7 +107,6 @@ const Kind = styled.p`
 `
 const Feedback = styled.div`
   font-weight: bold;
-  margin-top: ${rem(16)};
   font-size: ${rem(12)};
   letter-spacing: ${rem(0.44)};
   text-transform: uppercase;
@@ -241,6 +243,8 @@ const AnswerItem = styled.div`
   font-size: ${rem(12)};
 `
 const AnswerUsername = styled.span`
+  flex: 0 0 auto;
+  align-self: flex-start;
   font-family: ${headerFont};
   font-weight: bold;
   font-size: ${rem(14)};
@@ -290,13 +294,13 @@ const JoinIcon = styled.div`
  /*
     styleType
       compact
-      normal 
+      normal
   */
 
 const Message = (props) => {
   const {
     styleType = 'normal',
-    userImage,
+    userPicture,
     displayName,
     username,
     type,
@@ -318,11 +322,10 @@ const Message = (props) => {
     <Container>
       <UserInfo>
         <UserAvatar>
-          <img src={userImage} />
+          <img src={userPicture} />
         </UserAvatar>
 
-        {
-          styleType == 'normal' &&
+        {styleType == 'normal' &&
           <Like onClick={onLikeClick} isLiked={isLiked}>
             {isLiked ? <ThumbUpSelected /> : <ThumbUp1 />}
             <LikeCount>{likeCount}</LikeCount>
@@ -333,64 +336,64 @@ const Message = (props) => {
       <MessageContent>
         <UserData onClick={onUserClick}>
           <Name href="#">{displayName}</Name>
-          {styleType == 'normal' &&
-            <Username href="#">{username}</Username>
+          {styleType == 'normal' && username &&
+            <Username href="#">@{username}</Username>
           }
         </UserData>
 
-        <MessageContent>
-          <MessageTextContainer styleType={styleType}>
-            <Kind styleType={styleType}>{type}</Kind>
-            <MessageText>{content}</MessageText>
-          </MessageTextContainer>
+        <MessageTextContainer styleType={styleType}>
+          <Kind styleType={styleType} type={type}>{type}</Kind>
+          <MessageText>{content}</MessageText>
+        </MessageTextContainer>
 
-          {styleType == 'normal' ?
-            <Feedback>
-              <Wrong onClick={onWrongClick} isWrongActive={isWrongActive}>
-                <SvgIcon>
-                  <DislikeThumb />
-                </SvgIcon>
-                <WrongText>Wrong ({wrongCount})</WrongText>
-              </Wrong>
-              <Dot />
-              <Answer onClick={onAnswerClick}>
-                <SvgIcon>
-                  <ArrowRight />
-                </SvgIcon>
-                <AnswerText>Answer ({answerCount})</AnswerText>
-              </Answer>
-            </Feedback> :
+        {styleType == 'normal' ?
+          <Feedback>
+            <Wrong onClick={onWrongClick} isWrongActive={isWrongActive}>
+              <SvgIcon>
+                <DislikeThumb />
+              </SvgIcon>
+              <WrongText>Wrong ({wrongCount * -1})</WrongText>
+            </Wrong>
+            <Dot />
+            <Answer onClick={onAnswerClick}>
+              <SvgIcon>
+                <ArrowRight />
+              </SvgIcon>
+              <AnswerText>
+                Answer{' '}
+                {answerCount !== 0 && `(${answerCount})`}
+              </AnswerText>
+            </Answer>
+          </Feedback> :
+          <GoBack onClick={onGoBackEvent}>
+            <GoBackArrow><ArrowLeft /></GoBackArrow>
+            <GoBackText>GO TO MESSAGE</GoBackText>
+          </GoBack>
+        }
 
-            <GoBack onClick={onGoBackEvent}>
-              <GoBackArrow><ArrowLeft /></GoBackArrow>
-              <GoBackText>GO TO MESSAGE</GoBackText>
-            </GoBack>
-          }
-
-          {styleType == 'normal' &&
-            <AnswerHighlight>
-              {answerHighlightArray.map((p, i) => (
-                <AnswerItemContainer key={i}>
-                  <UpVote onClick={p.onUpVoteClick}>
-                    <ArrowUpIcon>
-                      <ArrowUp />
-                    </ArrowUpIcon>
-                    <UpVoteCount>{p.UpVoteCount}</UpVoteCount>
-                  </UpVote>
-                  <AnswerItem>
-                    <AnswerUsername>{p.answerUsername}</AnswerUsername>
-                    <AnswerContent>{p.answerContent}</AnswerContent>
-                  </AnswerItem>
-                </AnswerItemContainer>
-              ))}
-              <JoinContainer>
-                <JoinButton>
-                  JOIN <JoinIcon><ArrowLeft /></JoinIcon>
-                </JoinButton>
-              </JoinContainer>
-            </AnswerHighlight>
-          }
-        </MessageContent>
+        {styleType == 'normal' && answerHighlightArray.length !== 0 &&
+          <AnswerHighlight>
+            {answerHighlightArray.map((p, i) => (
+              <AnswerItemContainer key={i}>
+                <UpVote onClick={p.onUpVoteClick}>
+                  <ArrowUpIcon>
+                    <ArrowUp />
+                  </ArrowUpIcon>
+                  <UpVoteCount>{p.UpVoteCount}</UpVoteCount>
+                </UpVote>
+                <AnswerItem>
+                  <AnswerUsername>{p.answerUsername}</AnswerUsername>
+                  <AnswerContent>{p.answerContent}</AnswerContent>
+                </AnswerItem>
+              </AnswerItemContainer>
+            ))}
+            <JoinContainer>
+              <JoinButton>
+                join <JoinIcon><ArrowLeft /></JoinIcon>
+              </JoinButton>
+            </JoinContainer>
+          </AnswerHighlight>
+        }
       </MessageContent>
     </Container>
   )

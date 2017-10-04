@@ -8,6 +8,23 @@ import { BasicUserFragment } from '../utils/fragments'
 const CLIENT_ID = 'fg7xYHdGb549jGj0K581ruwjoZW3FiqA'
 const DOMAIN = 'justonerocks.eu.auth0.com'
 
+const getLock = (function () {
+  let lock
+
+  return () => {
+    if (!lock) {
+      // Create an instance
+      if (process.browser) {
+        lock = new Auth0Lock(CLIENT_ID, DOMAIN, {
+          auth: { redirect: false }
+        })
+      }
+    }
+
+    return lock
+  }
+})()
+
 class Login extends PureComponent {
   constructor(p) {
     super(p)
@@ -16,10 +33,8 @@ class Login extends PureComponent {
       return
     }
 
-    // Init Auth0 Lock instance
-    this.lock = new Auth0Lock(CLIENT_ID, DOMAIN, {
-      auth: { redirect: false }
-    })
+    this.lock = getLock()
+
     // Handle authenticated user's data
     this.lock.on('authenticated', this.authenticated)
   }
@@ -42,6 +57,8 @@ class Login extends PureComponent {
       user,
       getLoginButtonProps: this.getLoginButtonProps,
       getLogoutButtonProps: this.getLogoutButtonProps,
+      login: this.login,
+      logout: this.logout,
     }
   }
 
@@ -61,8 +78,12 @@ class Login extends PureComponent {
 
   /////// //////////// ////////
 
-  clicked = () => {
+  login = () => {
     this.lock.show()
+  }
+
+  clicked = () => {
+    this.login()
   }
 
   authenticated = authResult => {

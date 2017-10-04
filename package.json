@@ -12,6 +12,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "add-graphql-subscriptions": "^1.0.1",
     "apollo-client": "^1.9.3",
     "auth0-lock": "^10.21.1",
     "draft-js": "^0.10.2",
@@ -27,7 +28,9 @@
     "react-dom": "^15.6.1",
     "sanitize-html": "^1.14.1",
     "styled-components": "^2.1.2",
-    "sw-precache-webpack-plugin": "^0.11.4"
+    "subscriptions-transport-ws": "0.8.3",
+    "sw-precache-webpack-plugin": "^0.11.4",
+    "ws": "^3.2.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.6",

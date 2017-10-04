@@ -89,6 +89,7 @@ const PageHeader = props => {
 
   if (sides.length < 2) {
     console.warn('[PageHeader] sides array must have at least 2 members')
+    return null
   }
 
   return (

@@ -62,7 +62,7 @@ storiesOf('Message', module)
     <div style={{ width: 571 }}>
       <Message
         styleType="type1"
-        userImage=""
+        userPicture=""
         userNicName="Gilfoyle St"
         username="@gilflmx"
         likeCount={50}
@@ -87,7 +87,7 @@ storiesOf('Message', module)
     <div style={{ width: 571 }}>
       <Message
         styleType="type1"
-        userImage=""
+        userPicture=""
         userNicName="Gilfoyle St"
         username="@gilflmx"
         likeCount={50}
@@ -107,7 +107,7 @@ storiesOf('Message', module)
     <div style={{ width: 571 }}>
       <Message
         styleType="type1"
-        userImage=""
+        userPicture=""
         userNicName="Gilfoyle St"
         username="@gilflmx"
         likeCount={50}
@@ -141,7 +141,7 @@ storiesOf('Message', module)
     <div style={{ width: 571 }}>
       <Message
         styleType="type1"
-        userImage=""
+        userPicture=""
         userNicName="Gilfoyle St"
         username="@gilflmx"
         likeCount={50}
@@ -275,13 +275,13 @@ storiesOf('Compose', module)
     )
 
   storiesOf('SideBar Complete', module)
-    .add('SideBar', () => 
+    .add('SideBar', () =>
         <SideBar />
     )
 
   storiesOf('PageHeader ', module)
-    .add('PageHeader', () => 
+    .add('PageHeader', () =>
     <div style={{ width: 1200, background: '#636CD5' }}>
       <PageHeader />
-    </div>  
+    </div>
     )
