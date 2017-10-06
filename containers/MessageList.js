@@ -3,6 +3,8 @@ import { gql, graphql, compose } from 'react-apollo'
 
 import { PageMessageFragment } from '../utils/fragments'
 import { withUser, getDummy } from '../utils/graphql'
+import { sortTypes } from 'components/FilterBar'
+import CenteredText from 'components/CenteredText'
 import Message from 'components/Message'
 
 class MessageList extends Component {
@@ -21,10 +23,6 @@ class MessageList extends Component {
     }
   }
 
-  componentDidUpdate() {
-    this.props.scrollToBottom(true)
-  }
-
   render() {
     const {
       messages: { allMessages = [], loading, error },
@@ -32,44 +30,54 @@ class MessageList extends Component {
       unlike,
       wrong,
       unwrong,
+      sortBy,
     } = this.props
     console.log('[MessageList render] rerendered.')
 
     if (loading) {
-      return <div>Loading...</div>
+      return <CenteredText>Loading...</CenteredText>
     }
 
     if (error) {
-      return <div>Sorry, an error occured: {error[0]}</div>
+      return <CenteredText>Sorry, an error occured. {error[0]}</CenteredText>
     }
 
     console.log('[MessageList]', allMessages)
 
-    const messagesList = allMessages.map((m, i) => {
-      const isLiked = m.usersLikes.length === 1
-      const isWrongActive = m.usersWrongs.length === 1
+    const messagesList = allMessages
+      .slice()
+      .sort((a, b) => {
+        if (sortBy === sortTypes.MOST_POPULAR) {
+          return a._usersLikesMeta.count > b._usersLikesMeta.count ? -1 : 1
+        } else if (sortBy === sortTypes.MOST_RECENT) {
+          return a.createdAt > b.createdAt ? -1 : 1
+        }
+      })
+      .map((m, i) => {
+        const isLiked = m.usersLikes.length === 1
+        const isWrongActive = m.usersWrongs.length === 1
 
-      return (
-        <Message
-          key={i}
-          isLiked={isLiked}
-          isWrongActive={isWrongActive}
-          styleType="normal"
-          userImage=""
-          displayName={m.sentBy.displayName}
-          username={m.sentBy.username}
-          type={m.type}
-          content={m.content}
-          likeCount={m._usersLikesMeta.count}
-          wrongCount={m._usersWrongsMeta.count}
-          answerCount={0}
-          onLikeClick={() => isLiked ? unlike(m.id) : like(m.id)}
-          onWrongClick={() => isWrongActive ? unwrong(m.id) : wrong(m.id)}
-          onAnswerClick={() => {}}
-          onUserClick={() => {}}
-        />
-      )
-    })
+        return (
+          <Message
+            key={i}
+            isLiked={isLiked}
+            isWrongActive={isWrongActive}
+            styleType="normal"
+            userImage=""
+            displayName={m.sentBy.displayName}
+            username={m.sentBy.username}
+            type={m.type}
+            content={m.content}
+            likeCount={m._usersLikesMeta.count}
+            wrongCount={m._usersWrongsMeta.count}
+            answerCount={0}
+            onLikeClick={() => isLiked ? unlike(m.id) : like(m.id)}
+            onWrongClick={() => isWrongActive ? unwrong(m.id) : wrong(m.id)}
+            onAnswerClick={() => {}}
+            onUserClick={() => {}}
+          />
+        )
+      })
 
     return <div>{messagesList}</div>
   }
@@ -165,8 +173,8 @@ const UnwrongMessage = gql`
 
 
 const GetMessages = gql`
-  query getMessages($slug: String!, $userId: ID) {
-    allMessages(filter: { page: { slug: $slug }}) {
+  query getMessages($slug: String!, $userId: ID, $type: MessageTypes) {
+    allMessages(filter: { type: $type, page: { slug: $slug }}) {
       ...PageMessage
       usersLikes(filter: { id: $userId }) {
         id
@@ -204,14 +212,15 @@ export default compose(
     name: 'messages',
 
     // Get slug from the pathname
-    options: ({ slug, user }) => ({
+    options: ({ slug, user, filterBy }) => ({
       variables: {
         slug,
         userId: user.user && user.user.id,
+        type: filterBy || undefined,
       }
     }),
 
-    props: ({ messages, ownProps: { slug, user }}) => ({
+    props: ({ messages, ownProps: { slug, user, filterBy }}) => ({
       // Rename data to messages
       messages: messages,
 
@@ -222,6 +231,7 @@ export default compose(
           variables: {
             slug,
             userId: user.user && user.user.id,
+            type: filterBy || undefined,
           },
 
           // Where magic happens

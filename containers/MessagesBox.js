@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import ComposeLogin from 'components/compose/ComposeLogin'
-import FilterBar from 'components/FilterBar'
+import FilterBar, { sortTypes } from 'components/FilterBar'
 import Login from 'containers/Login'
 import SendMessage from 'containers/SendMessage'
 import MessageList from 'containers/MessageList'
@@ -26,12 +26,24 @@ const ComposeWrapper = styled.div`
 
 
 class MessagesBox extends Component {
+
+  state = {
+    sortBy: sortTypes.MOST_RECENT,
+    filterBy: null,
+  }
+
   render() {
     const { slug } = this.props
+    const { sortBy, filterBy } = this.state
 
     return (
       <Wrapper>
-        <FilterBar />
+        <FilterBar
+          sortBy={sortBy}
+          filterBy={filterBy}
+          onSort={this.sorted}
+          onFilter={this.filtered}
+        />
 
         <WithScrollToBottom>
           {({
@@ -41,6 +53,8 @@ class MessagesBox extends Component {
             <MessagesSpace {...getWrapperProps({ ref: 'innerRef' })}>
               <MessageList
                 slug={slug}
+                sortBy={sortBy}
+                filterBy={filterBy}
                 scrollToBottom={scrollToBottom}
               />
             </MessagesSpace>
@@ -67,6 +81,18 @@ class MessagesBox extends Component {
         </ComposeWrapper>
       </Wrapper>
     )
+  }
+
+  sorted = sortBy => {
+    this.setState({ sortBy })
+  }
+
+  filtered = filterBy => {
+    if (this.state.filterBy === filterBy) {
+      this.setState({ filterBy: null })
+    } else {
+      this.setState({ filterBy })
+    }
   }
 }
 

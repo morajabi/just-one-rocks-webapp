@@ -4,14 +4,14 @@ import darken from 'polished/lib/color/darken'
 import rem from '../utils/rem'
 import { headerFont } from '../utils/fonts'
 
-const sortTypes = {
+export const sortTypes = {
   MOST_RECENT: 'most recent',
   MOST_POPULAR: 'most popular',
 }
 
-const filterTypes = {
-  CONS: 'cons',
-  PROS: 'pros',
+export const filterTypes = {
+  CONS: 'Con',
+  PROS: 'Pro',
 }
 
 const Container = styled.div`
