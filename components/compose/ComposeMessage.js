@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { EditorState, getDefaultKeyBinding } from 'draft-js'
+import { EditorState, getDefaultKeyBinding, ContentState } from 'draft-js'
 
 import rem from '../../utils/rem'
-import Editor from './Editor'
+import Editor, { emptyContentState } from './Editor'
 
 function countChars(text = '') {
   return text.length
@@ -59,7 +59,7 @@ const EditorArea = styled.div`
   & .public-DraftEditor-content,
   & .public-DraftEditorPlaceholder-root {
     /* make editable content full height */
-    padding: ${rem(8)} 0;
+    padding: ${rem(8)} ${rem(8)} ${rem(8)} 0;
   }
 `
 
@@ -129,6 +129,16 @@ const WordCounter = styled.div`
   }
 `
 
+const DisabledOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.05);
+`
+
 class ComposeMessage extends Component {
 
   static propTypes = {
@@ -136,12 +146,13 @@ class ComposeMessage extends Component {
   }
 
   state = {
-    editorState: EditorState.createEmpty(),
+    editorState: EditorState.createWithContent(emptyContentState),
     isFocused: true,
-    type: 'pro',
+    type: 'Pro',
   }
 
   render() {
+    const { disabled } = this.props
     const { isFocused, type, editorState } = this.state
     const charCount = 250 - countChars(
       editorState.getCurrentContent().getPlainText()
@@ -151,7 +162,9 @@ class ComposeMessage extends Component {
     return (
       <Wrapper isFocused={isFocused}>
 
-        {(isOffLimit || isFocused) &&
+        {disabled && <DisabledOverlay />}
+
+        {(isOffLimit || isFocused) && !disabled &&
           <MetaWrapper>
             <WordCounter isOffLimit={isOffLimit}>
             {isOffLimit && <span>Uh-uh! It's too much </span>}{charCount}
@@ -163,26 +176,28 @@ class ComposeMessage extends Component {
           <EditorFlexWrapper isFocused={isFocused}>
             <TypeSwitch>
               <TypeOption
-                active={type === 'pro'}
+                active={type === 'Pro'}
                 color="#38F479"
-                onClick={() => this.switchType('pro')}
+                onClick={() => this.switchType('Pro')}
               >
-                pro
+                Pro
               </TypeOption>
               <TypeSeparator />
               <TypeOption
-                active={type === 'con'}
+                active={type === 'Con'}
                 color="#FF9B2F"
-                onClick={() => this.switchType('con')}
+                onClick={() => this.switchType('Con')}
               >
-                con
+                Con
               </TypeOption>
             </TypeSwitch>
 
             <EditorArea isFocused={isFocused} isOffLimit={isOffLimit}>
               <Editor
+                disabled={disabled}
                 placeholder="What do you think?"
-                editorState={editorState}
+                editorKey="compose-message"
+                editorState={this.state.editorState}
                 innerRef={editor => this.editor = editor}
                 onChange={this.changed}
                 onFocus={this.focused}
@@ -206,7 +221,11 @@ class ComposeMessage extends Component {
 
   handleKeyCommand = command => {
     if (command === 'submit') {
-      this.props.onSubmit()
+      this.props.onSubmit(
+        this.state.editorState,
+        this.state.type,
+        this.clearEditor,
+      )
       return 'handled'
     }
     return 'not-handled'
@@ -227,6 +246,14 @@ class ComposeMessage extends Component {
       this.editor.focus()
     }
     this.setState({ type })
+  }
+
+  clearEditor = () => {
+    const editorState = EditorState.push(
+      this.state.editorState,
+      ContentState.createFromText('')
+    )
+    this.setState({ editorState })
   }
 }
 

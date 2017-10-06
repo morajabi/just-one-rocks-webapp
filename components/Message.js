@@ -1,16 +1,19 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import rem from '../utils/rem'
 import { darkGrey, grey } from '../utils/colors'
+import darken from 'polished/lib/color/darken'
 import { bodyFont, headerFont } from '../utils/fonts'
 import { resetButton } from '../utils/reset'
 import Dot from './Dot'
-import { ThumbUp1, DislikeThumb, ArrowRight, ArrowLeft, ArrowUp } from './Icons'
+import { ThumbUp1, DislikeThumb, ArrowRight, ArrowLeft, ArrowUp, ThumbUpSelected } from './Icons'
 
 const Container = styled.div`
   font-family: ${headerFont};
   display: flex;
   font-size: ${rem(20)};
+  padding: ${rem(12)} ${rem(29)} ${rem(18)} 0;
+  border-bottom: 1px solid #eee;
 `
 const UserInfo = styled.div`
   flex: 0 1 auto;
@@ -18,7 +21,7 @@ const UserInfo = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
-  padding: ${rem(6)} ${rem(10)};
+  padding: ${rem(10)} ${rem(10)} 0 ${rem(18)};
 `
 const MessageContent = styled.div`
   flex: 0 1 100%;
@@ -30,12 +33,31 @@ const UserAvatar = styled.div`
   height: ${rem(32)};
   border: 3px solid #636cd5;
   border-radius: ${rem(22)};
+  line-height: 1;
 `
 const Like = styled.div`
   width: ${rem(22)};
   height: ${rem(24)};
   margin-top: ${rem(10)};
   cursor: pointer;
+
+  ${p => p.isLiked ? css`
+    &:hover {
+      color: ${darken(0.1,'#3db3fe')};
+
+      path {
+        fill: ${darken(0.1,'#3db3fe')};
+      }
+    }
+  ` : css`
+    &:hover {
+      color: #555;
+
+      path {
+        fill: #555;
+      }
+    }
+  `}
 `
 const LikeCount = styled.div`
   width: 100%;
@@ -53,7 +75,7 @@ const Name = styled.a`
   font-weight: 700;
   font-size: ${rem(14)};
   color: ${darkGrey};
-  margin-right: ${rem(14)};
+  margin-right: ${rem(9)};
   text-decoration: none;
 `
 const Username = styled.a`
@@ -61,21 +83,23 @@ const Username = styled.a`
   color: ${grey};
   text-decoration: none;
 `
-const MessageTextContainer = styled.p`
-  font-size: ${p => p.styleType == 'type1' ? rem(14) : rem(13)};
+const MessageTextContainer = styled.div`
+  font-size: ${p => p.styleType == 'normal' ? rem(14) : rem(13)};
   line-height: ${rem(20)};
   color: ${darkGrey};
-  margin-top: ${p => p.styleType == 'type1' ? rem(10) : rem(2)};
+  margin-top: ${p => p.styleType == 'normal' ? rem(10) : rem(2)};
 `
 const MessageText = styled.span`
   color: ${darkGrey};
+  font-size: ${rem(15)};
+  line-height: 1.25;
 `
 const Kind = styled.p`
   margin: 0;
   font-family: ${headerFont};
-  font-size: ${p => p.styleType == 'type1' ? rem(17) : rem(16)};
+  font-size: ${p => p.styleType == 'normal' ? rem(17) : rem(16)};
   letter-spacing: -0.26px;
-  color: #ff9b2f;
+  color: ${p => p.type === 'Con' ? '#ff9b2f' : 'lightGreen'};
   display: inline-block;
   font-weight: 700;
   margin-right: ${rem(5)};
@@ -83,7 +107,6 @@ const Kind = styled.p`
 `
 const Feedback = styled.div`
   font-weight: bold;
-  margin-top: ${rem(16)};
   font-size: ${rem(12)};
   letter-spacing: ${rem(0.44)};
   text-transform: uppercase;
@@ -95,6 +118,30 @@ const Wrong = styled.button`
   display: inline;
   margin-right: ${rem(11)};
   cursor: pointer;
+  color: #bdbdbd;
+  ${p => p.isWrongActive ? css`
+    color: #e74c3c;
+
+    path {
+      fill: #e74c3c;
+    }
+
+    &:hover {
+      color: ${darken(0.1,'#e74c3c')};
+
+      path {
+        fill: ${darken(0.1,'#e74c3c')};
+      }
+    }
+  ` : css`
+    &:hover {
+      color: #95a5a6;
+
+      path {
+        fill: #95a5a6;
+      }
+    }
+  `}
 `
 const Answer = styled.button`
   ${resetButton}
@@ -102,6 +149,19 @@ const Answer = styled.button`
   display: inline;
   margin-left: 10px;
   cursor: pointer;
+  color: #bdbdbd;
+
+  ${p => p.wrongStatus && css`
+    color: #e74c3c;
+  `}
+
+  &:hover {
+    color: #95a5a6;
+
+    path {
+      fill: #95a5a6;
+    }
+  }
 `
 const SvgIcon = styled.div`
   padding-top: ${rem(5)};
@@ -113,14 +173,12 @@ const WrongText = styled.div`
   display: inline;
   margin-right: ${rem(4)};
   font-weight: 700;
-  color: #bdbdbd;
 `
 const AnswerText = styled.div`
   padding-top: ${rem(5)};
   display: inline;
   margin-right: ${rem(4)};
   font-weight: 700;
-  color: #bdbdbd;
 `
 const GoBack = styled.div`
   font-weight: bold;
@@ -139,7 +197,7 @@ const GoBackText = styled.span`
 /* Answers Highlighted */
 const AnswerHighlight = styled.div`
   background: #fafafa;
-  border: ${rem(1)} solid #fafafa;
+  border: ${rem(1)} dashed #eaeaea;
   box-sizing: border-box;
   padding: ${rem(10)};
   margin-top: ${rem(4)};
@@ -148,6 +206,16 @@ const UpVote = styled.div`
   flex: 0 0 auto;
   padding: ${rem(3.5)} ${rem(7)} 0 0;
   font-size: 0;
+  cursor: pointer;
+  color: #838383;
+
+  &:hover {
+    color: #555;
+
+    path {
+      fill: #555;
+    }
+  }
 `
 const UpVoteCount = styled.div`
   display: inline-block;
@@ -157,6 +225,10 @@ const UpVoteCount = styled.div`
 const ArrowUpIcon = styled.div`
   text-align: center;
   display: inline-block;
+
+  svg {
+    vertical-align: super;
+  }
 `
 const AnswerItemContainer = styled.div`
   display: flex;
@@ -171,6 +243,8 @@ const AnswerItem = styled.div`
   font-size: ${rem(12)};
 `
 const AnswerUsername = styled.span`
+  flex: 0 0 auto;
+  align-self: flex-start;
   font-family: ${headerFont};
   font-weight: bold;
   font-size: ${rem(14)};
@@ -186,6 +260,17 @@ const JoinContainer = styled.div`
   display: flex;
   align-items: center;
   height: ${rem(18)};
+  cursor: pointer;
+
+  &:hover {
+    div {
+      color: #95a5a6;
+    }
+
+    path {
+      fill: #95a5a6;
+    }
+  }
 `
 const JoinButton = styled.div`
   margin: 0 auto;
@@ -202,109 +287,113 @@ const JoinIcon = styled.div`
   transform: rotate(-180deg);
   display: inline-block;
   padding-right: ${rem(5)};
+  line-height: 1;
 `
+
+
+ /*
+    styleType
+      compact
+      normal
+  */
 
 const Message = (props) => {
   const {
-    styleType = 'type1',
-    userImage,
-    userNicName,
+    styleType = 'normal',
+    userPicture,
+    displayName,
     username,
     type,
     content,
     likeCount = 0,
     wrongCount = 0,
     answerCount = 0,
-    goBackEvent = () => {},
+    onGoBackEvent = () => {},
     onLikeClick = () => {},
     onUserClick = () => {},
     onWrongClick = () => {},
     onAnswerClick = () => {},
-    answerHighlightArray=[]
+    answerHighlightArray = [],
+    isLiked = false,
+    isWrongActive = false,
   } = props
 
   return (
     <Container>
       <UserInfo>
         <UserAvatar>
-          <img src={userImage} />
+          <img src={userPicture} />
         </UserAvatar>
-        {
-          styleType == 'type1' &&
-          <Like onClick={onLikeClick}>
-            <ThumbUp1 />
+
+        {styleType == 'normal' &&
+          <Like onClick={onLikeClick} isLiked={isLiked}>
+            {isLiked ? <ThumbUpSelected /> : <ThumbUp1 />}
             <LikeCount>{likeCount}</LikeCount>
           </Like>
         }
-
       </UserInfo>
 
       <MessageContent>
         <UserData onClick={onUserClick}>
-          <Name href="#">{userNicName}</Name>
-          {
-            styleType == 'type1' &&
-            <Username href="#">{username}</Username>
+          <Name href="#">{displayName}</Name>
+          {styleType == 'normal' && username &&
+            <Username href="#">@{username}</Username>
           }
         </UserData>
 
-        <MessageContent>
-          <MessageTextContainer styleType={styleType}>
-            <Kind styleType={styleType}>{type}</Kind>
-            <MessageText>{content}</MessageText>
-          </MessageTextContainer>
+        <MessageTextContainer styleType={styleType}>
+          <Kind styleType={styleType} type={type}>{type}</Kind>
+          <MessageText>{content}</MessageText>
+        </MessageTextContainer>
 
-          {
-            styleType == 'type1' ?
+        {styleType == 'normal' ?
+          <Feedback>
+            <Wrong onClick={onWrongClick} isWrongActive={isWrongActive}>
+              <SvgIcon>
+                <DislikeThumb />
+              </SvgIcon>
+              <WrongText>Wrong ({wrongCount * -1})</WrongText>
+            </Wrong>
+            <Dot />
+            <Answer onClick={onAnswerClick}>
+              <SvgIcon>
+                <ArrowRight />
+              </SvgIcon>
+              <AnswerText>
+                Answer{' '}
+                {answerCount !== 0 && `(${answerCount})`}
+              </AnswerText>
+            </Answer>
+          </Feedback> :
+          <GoBack onClick={onGoBackEvent}>
+            <GoBackArrow><ArrowLeft /></GoBackArrow>
+            <GoBackText>GO TO MESSAGE</GoBackText>
+          </GoBack>
+        }
 
-            <Feedback>
-              <Wrong onClick={onWrongClick}>
-                <SvgIcon>
-                  <DislikeThumb />
-                </SvgIcon>
-                <WrongText>Wrong ({wrongCount})</WrongText>
-              </Wrong>
-              <Dot />
-              <Answer onClick={onAnswerClick}>
-                <SvgIcon>
-                  <ArrowRight />
-                </SvgIcon>
-                <AnswerText>Answer ({answerCount})</AnswerText>
-              </Answer>
-            </Feedback> :
-
-            <GoBack onClick={goBackEvent}>
-              <GoBackArrow><ArrowLeft /></GoBackArrow>
-              <GoBackText>GO TO MESSAGE</GoBackText>
-            </GoBack>
-          }
-
-          {
-            styleType == 'type1' &&
-            <AnswerHighlight>
-            {
-              answerHighlightArray.map((p, i) => (
-                <AnswerItemContainer key={i}>
-                  <UpVote onClick={p.onUpVoteClick}>
-                    <ArrowUpIcon>
-                      <ArrowUp />
-                    </ArrowUpIcon>
-                    <UpVoteCount>{p.UpVoteCount}</UpVoteCount>
-                  </UpVote>
-                  <AnswerItem>
-                    <AnswerUsername>{p.answerUsername}</AnswerUsername>
-                    <AnswerContent>{p.answerContent}</AnswerContent>
-                  </AnswerItem>
-                </AnswerItemContainer>
+        {styleType == 'normal' && answerHighlightArray.length !== 0 &&
+          <AnswerHighlight>
+            {answerHighlightArray.map((p, i) => (
+              <AnswerItemContainer key={i}>
+                <UpVote onClick={p.onUpVoteClick}>
+                  <ArrowUpIcon>
+                    <ArrowUp />
+                  </ArrowUpIcon>
+                  <UpVoteCount>{p.UpVoteCount}</UpVoteCount>
+                </UpVote>
+                <AnswerItem>
+                  <AnswerUsername>{p.answerUsername}</AnswerUsername>
+                  <AnswerContent>{p.answerContent}</AnswerContent>
+                </AnswerItem>
+              </AnswerItemContainer>
             ))}
-              <JoinContainer>
-                <JoinButton>
-                  JOIN <JoinIcon><ArrowLeft /></JoinIcon>
-                </JoinButton>
-              </JoinContainer>
-            </AnswerHighlight>
-          }
-        </MessageContent>
+            <JoinContainer>
+              <JoinButton>
+                join <JoinIcon><ArrowLeft /></JoinIcon>
+              </JoinButton>
+            </JoinContainer>
+          </AnswerHighlight>
+        }
       </MessageContent>
     </Container>
   )

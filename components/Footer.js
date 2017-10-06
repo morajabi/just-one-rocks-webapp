@@ -5,7 +5,7 @@ import { headerFont } from '../utils/fonts'
 import { WaveLine } from './Icons'
 import Container from './Container'
 
-const FooterContainer = styled.div`
+const FooterContainer = styled.footer`
   width: 100%;
   height: ${rem(100)};
   font-family: ${headerFont};
@@ -23,20 +23,19 @@ const SectionLeft = styled.div`
   flex: 1 0 auto;
 `
 const LogoContainer = styled.div`
-  width: ${rem(66)};
-  height: ${rem(35)};
+  margin-right: ${rem(10)};
   cursor: pointer;
+  opacity: 0.1;
 
   img {
     display: block;
     width: ${rem(66)};
     height: ${rem(35)};
     filter: brightness(0) invert(0);
-    opacity: 0.2;
   }
 
   &:hover {
-    opacity: 0.6;
+    opacity: 0.2;
   }
 `
 const Nav = styled.nav`
@@ -59,6 +58,7 @@ const CopyRight = styled.div`
   font-weight: bold;
   font-size: ${rem(12)};
   color: rgba(0, 0, 0, 0.39);
+  opacity: 0.8;
 `
 const WaveLiveContainer = styled.div`
   flex: 1 0 auto;

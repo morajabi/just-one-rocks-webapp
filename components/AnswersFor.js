@@ -11,7 +11,7 @@ const Container = styled.div`
 `
 const Title = styled.div`
   padding: ${rem(10)};
-  font-weight: 800;
+  font-weight: 700;
   font-size: ${rem(15)};
   color: rgba(0, 0, 0, 0.13);
 `
@@ -19,7 +19,7 @@ const Title = styled.div`
 const AnswersFor = () => (
   <Container>
     <Title>Answers for</Title>
-    <Message 
+    <Message
       styleType="type2"
       userNicName="Gilfoyle St"
       type="con"

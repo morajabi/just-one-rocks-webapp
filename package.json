@@ -1,8 +1,9 @@
 {
   "scripts": {
-    "dev": "next",
+    "dev": "node server/index.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server/index.js",
+    "analyze": "cross-env ANALYZE=true next build",
     "storybook": "start-storybook -s ./ -p 6006",
     "build-storybook": "build-storybook",
     "lint:js": "eslint .",
@@ -11,17 +12,26 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "add-graphql-subscriptions": "^1.0.1",
+    "apollo-client": "^1.9.3",
+    "auth0-lock": "^10.21.1",
     "draft-js": "^0.10.2",
     "eslint": "^4.6.1",
+    "express": "^4.15.4",
+    "isomorphic-fetch": "^2.2.1",
     "next": "^3.2.2",
     "polished": "^1.7.0",
     "prettier": "^1.7.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
+    "react-apollo": "^1.4.15",
     "react-dom": "^15.6.1",
     "sanitize-html": "^1.14.1",
     "styled-components": "^2.1.2",
     "styled-media-query": "^2.0.1"
+    "subscriptions-transport-ws": "0.8.3",
+    "sw-precache-webpack-plugin": "^0.11.4",
+    "ws": "^3.2.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.6",
@@ -31,6 +41,7 @@
     "babel-plugin-module-resolver": "^2.7.1",
     "babel-plugin-polished": "^1.1.0",
     "babel-plugin-styled-components": "^1.2.0",
+    "cross-env": "^5.0.5",
     "eslint-config-prettier": "^2.4.0",
     "eslint-plugin-prettier": "^2.2.0",
     "eslint-plugin-react": "^7.3.0",
@@ -40,7 +51,8 @@
     "stylelint-config-standard": "^17.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^0.4.0",
-    "stylint-stylish": "^1.4.0"
+    "stylint-stylish": "^1.4.0",
+    "webpack-bundle-analyzer": "^2.9.0"
   },
   "lint-staged": {
     "*.js": [

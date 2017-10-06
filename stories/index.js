@@ -19,6 +19,7 @@ import FilterBar from '../components/FilterBar'
 import Message from '../components/Message'
 import ComposeMessage from '../components/compose/ComposeMessage'
 import ComposeReply from '../components/compose/ComposeReply'
+import PageHeader from '../components/PageHeader'
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />)
 
@@ -61,7 +62,7 @@ storiesOf('Message', module)
     <div style={{ width: 571 }}>
       <Message
         styleType="type1"
-        userImage=""
+        userPicture=""
         userNicName="Gilfoyle St"
         username="@gilflmx"
         likeCount={50}
@@ -86,7 +87,7 @@ storiesOf('Message', module)
     <div style={{ width: 571 }}>
       <Message
         styleType="type1"
-        userImage=""
+        userPicture=""
         userNicName="Gilfoyle St"
         username="@gilflmx"
         likeCount={50}
@@ -106,7 +107,7 @@ storiesOf('Message', module)
     <div style={{ width: 571 }}>
       <Message
         styleType="type1"
-        userImage=""
+        userPicture=""
         userNicName="Gilfoyle St"
         username="@gilflmx"
         likeCount={50}
@@ -119,6 +120,42 @@ storiesOf('Message', module)
         onUserClick={action('onUserClick')}
         onWrongClick={action('onWrongClick')}
         onAnswerClick={action('onAnswerClick')}
+        answerHighlightArray={[
+          {
+            UpVoteCount: 10,
+            answerUsername: 'Gavin Belson',
+            answerContent: 'Why are you telling Redux is faster? It’s obviously wrong.',
+            onUpVoteClick: action('onUpVoteClick'),
+          },
+          {
+            UpVoteCount: 10,
+            answerUsername: 'Gavin Belson',
+            answerContent: 'Why are you telling Redux is faster? It’s obviously wrong.',
+            onUpVoteClick: action('onUpVoteClick'),
+          },
+        ]}
+      />
+    </div>
+  )
+  .add('Message Liked', () =>
+    <div style={{ width: 571 }}>
+      <Message
+        styleType="type1"
+        userPicture=""
+        userNicName="Gilfoyle St"
+        username="@gilflmx"
+        likeCount={50}
+        type="con"
+        content="Sublime is fast. I mean a lot faster than Electron-based apps like Visual Studio Code from Microsoft."
+        wrongCount="-25"
+        answerCount="30"
+        goBackEvent={action('goBack')}
+        onLikeClick={action('onLikeClick')}
+        onUserClick={action('onUserClick')}
+        onWrongClick={action('onWrongClick')}
+        onAnswerClick={action('onAnswerClick')}
+        isLiked={true}
+        isWrongActive={true}
         answerHighlightArray={[
           {
             UpVoteCount: 10,
@@ -238,6 +275,13 @@ storiesOf('Compose', module)
     )
 
   storiesOf('SideBar Complete', module)
-    .add('SideBar', () => 
+    .add('SideBar', () =>
         <SideBar />
+    )
+
+  storiesOf('PageHeader ', module)
+    .add('PageHeader', () =>
+    <div style={{ width: 1200, background: '#636CD5' }}>
+      <PageHeader />
+    </div>
     )
